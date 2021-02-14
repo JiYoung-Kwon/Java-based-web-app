@@ -1,3 +1,9 @@
+/*
+출제일 : 20210208
+내용 : 1~999의 정수 중에서 완전수를 모두 출력하시오.
+제출자 : 권지영
+*/
+
 package exam;
 
 import java.util.Scanner;
