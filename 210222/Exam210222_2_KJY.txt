@@ -1,0 +1,33 @@
+변수 선언 및 초기화
+int[] arr1 = new int[10];
+int[] arr2 = new int[10];
+
+기능
+* arr1, arr2 임의의 수 저장
+	- static void randomMethod(int[] arr1, int[] arr2)
+* arr1, arr2 정렬
+	- static void sortMethod(int[] arr1, int[] arr2)
+* arr3 크기 구하기 및 생성
+	- static int[] arr3Method(int[] arr1, int[] arr2)
+* arr3 값 저장
+	- static void initArr3Method(int[] arr1, int[] arr2, int[] arr3)
+* arr3 정렬
+	- static void sortMethod(int[] arr3) 
+
+
+함수 호출
+1. main
+	- arr1, arr2 임의의 수 저장
+		- randomMethod(arr1, arr2);
+
+	- arr1, arr2 정렬하기
+		- sortMethod(arr1, arr2);
+
+	- arr3 크기 구하기 및 생성
+		- int[] arr3 = arr3Method(arr1, arr2);
+
+	- arr3 값 저장 (0을 제외한)
+		- initArr3Method(arr1, arr2, arr3);
+
+	- arr3 정렬
+		- sortMethod(arr3);

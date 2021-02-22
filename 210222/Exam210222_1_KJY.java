@@ -1,17 +1,3 @@
-/*
-ì¶œì œì¼ : 20210222
-ë‚´ìš© : (ê¸°ëŠ¥ë¶„í• )
-	2->20 ê¹Œì§€ ì†Œì¸ìˆ˜ ë¶„í•´ë¥¼ í•œë‹¤. í•´ë‹¹ ì†Œì¸ìˆ˜ëŠ” ë°°ì—´ì— ì €ì¥í•œë‹¤. ì†Œì¸ìˆ˜ê°€ ì €ì¥ëœ ë°°ì—´ì„ ë‹¤ìŒê³¼ ê°™ì´ ì¶œë ¥í•œë‹¤.
-	2=2
-	3=3
-	4=2x2
-	5=5
-	6=2x3
-	...
-	20=2x2x5
-ì œì¶œì : ê¶Œì§€ì˜
-*/
-
 package exam;
 
 import java.util.Arrays;
@@ -22,18 +8,18 @@ public class Exam210222_1_KJY {
 		forMethod();
 	}
 
-	static void forMethod() { // 2~20 forë¬¸
+	static void forMethod() { // 2~20 for¹®
 		for (int num = 2; num <= 20; num++) {
 			int[] arr = whileMethod(num);
 
-			// ì—°ì‚° ê²°ê³¼ ë° ì˜¤ë¥˜ ê²€ì‚¬
+			// ¿¬»ê °á°ú ¹× ¿À·ù °Ë»ç
 			// System.out.println(num + " " + Arrays.toString(arr));
 
 			printMethod(num, arr);
 		}
 	}
 
-	static int[] whileMethod(int num) { // ì†Œì¸ìˆ˜ë¶„í•´
+	static int[] whileMethod(int num) { // ¼ÒÀÎ¼öºĞÇØ
 		int[] arr = new int[5];
 		int i = 2, j = 0;
 
@@ -49,16 +35,16 @@ public class Exam210222_1_KJY {
 			} else
 				i++;
 		}
-		// ì—°ì‚° ê²°ê³¼ ë° ì˜¤ë¥˜ ê²€ì‚¬
+		// ¿¬»ê °á°ú ¹× ¿À·ù °Ë»ç
 		// System.out.println(Arrays.toString(arr));
 
 		return arr;
 
 	}
 
-	static void printMethod(int num, int[] arr) { // ì¶œë ¥ ë©”ì†Œë“œ
+	static void printMethod(int num, int[] arr) { // Ãâ·Â ¸Ş¼Òµå
 
-		// ì—°ì‚° ê²°ê³¼ ë° ì˜¤ë¥˜ ê²€ì‚¬
+		// ¿¬»ê °á°ú ¹× ¿À·ù °Ë»ç
 		// System.out.println(num + " " + Arrays.toString(arr));
 		
 		System.out.print(num + "=");
