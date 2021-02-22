@@ -21,7 +21,8 @@ public class Exam210222_2_KJY {
 		randomMethod(arr1, arr2);
 
 		// arr1, arr2 정렬하기
-		sortMethod(arr1, arr2);
+		sortMethod(arr1);
+		sortMethod(arr2);
 
 		// arr3 크기 구하기 및 생성
 		int[] arr3 = arr3Method(arr1, arr2);
@@ -49,31 +50,23 @@ public class Exam210222_2_KJY {
 		// System.out.println("arr2= " + Arrays.toString(arr2));
 	}
 
-	static void sortMethod(int[] arr1, int[] arr2) {
-		for (int i = 0; i < 10; i++) {
+	static void sortMethod(int[] arr) {
+		for (int i = 0; i < arr.length; i++) {
 			boolean changed = false; // 자리바꿈 체크
 
-			for (int j = 0; j < 9; j++) {
-				if (arr1[j] > arr1[j + 1]) {
-					int temp = arr1[j];
-					arr1[j] = arr1[j + 1];
-					arr1[j + 1] = temp;
-					changed = true;
-				}
-				if (arr2[j] > arr2[j + 1]) {
-					int temp = arr2[j];
-					arr2[j] = arr2[j + 1];
-					arr2[j + 1] = temp;
+			for (int j = 0; j < arr.length - 1; j++) {
+				if (arr[j] > arr[j + 1]) {
+					int temp = arr[j];
+					arr[j] = arr[j + 1];
+					arr[j + 1] = temp;
 					changed = true;
 				}
 			}
 			if (!changed)
 				break;
 		}
-
 		// 연산 결과 및 오류 검사
-		// System.out.println("arr1= " + Arrays.toString(arr1));
-		// System.out.println("arr2= " + Arrays.toString(arr2));
+		// System.out.println("arr3= " + Arrays.toString(arr3));
 	}
 
 	static int[] arr3Method(int[] arr1, int[] arr2) {
@@ -96,8 +89,8 @@ public class Exam210222_2_KJY {
 
 	static void initArr3Method(int[] arr1, int[] arr2, int[] arr3) {
 		int index = 0;
-		
-		// arr1 -> arr3 배열 저장		
+
+		// arr1 -> arr3 배열 저장
 		for (int i = 0; i < 10; i++) {
 			if (arr1[i] != 0) {
 				arr3[index] = arr1[i];
@@ -111,26 +104,6 @@ public class Exam210222_2_KJY {
 				arr3[index] = arr2[i];
 				index++;
 			}
-		}
-
-		// 연산 결과 및 오류 검사
-		// System.out.println("arr3= " + Arrays.toString(arr3));
-	}
-
-	static void sortMethod(int[] arr3) {
-		for (int i = 0; i < arr3.length; i++) {
-			boolean changed = false; // 자리바꿈 체크
-
-			for (int j = 0; j < arr3.length - 1; j++) {
-				if (arr3[j] > arr3[j + 1]) {
-					int temp = arr3[j];
-					arr3[j] = arr3[j + 1];
-					arr3[j + 1] = temp;
-					changed = true;
-				}
-			}
-			if (!changed)
-				break;
 		}
 
 		// 연산 결과 및 오류 검사
