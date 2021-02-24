@@ -1,0 +1,29 @@
+변수 선언 및 초기화
+final static int SIZE = 5;
+int x = 0, y = 0; //빙고 셔플에 필요한 변수
+int num = 0; //입력 값
+int count = 0; //입력 횟수
+int[][] bingo = new int[SIZE][SIZE]; //빙고
+boolean[] enter = new boolean[26]; //입력 여부 저장
+
+기능
+* 배열 요소를 1~ SIZE*SIZE 숫자로 초기화
+	- void initMethod(int[][] bingo)
+
+* shuffle
+	- void shuffleMethod(int x, int y, int[][] bingo)
+
+* 빙고 출력
+	- void printBingo(int[][] bingo)
+
+* 빙고 숫자 입력
+	- int inputMethod(boolean[] enter)
+
+* 빙고 대각선, 수평, 수직 0 개수 확인
+	- void checkMethod(int[][] bingo, int[] horizontal, int[] vertical, int[] diagonal)
+
+* 게임 종료 확인
+	- void gameOver(int[] arr, int count)
+
+* 입력 값에 맞는 빙고판 0으로 변경
+	- void zeroMethod(int num, int[][] bingo, boolean[] enter)
