@@ -1,0 +1,21 @@
+
+1. 2/16일 문제를 클래스로 변경하여 구현하시오.클래스는 다음과 같음
+class Student{
+	int kor;
+	int eng;
+	int Math;
+	int total;
+	double avg;
+	
+	void outputMethod() {}
+}
+
+class Teacher{
+	void totalAvg(Student student) {}
+	void outputMethod(Student student) {}
+}
+
+< 암기하세요>
+- 메인 메서드 안의 내용만 적으세요. 출력부분 적을 필요 없음, 
+VarEx2.java(치환)(p24), 표2-3(p29, 기본형의 종류와 크기), 자료의 기본값(p300) ,FlowEx13.java(p159,누적 값 구하기), FlowEx18.java(p163,구구단), ArrayEx6.java (p197, 최대값, 최소값), 표6-3 변수의 종류와 특징(p246)
+
