@@ -17,7 +17,6 @@
 제출자 : 권지영
 */
 
-
 package exam;
 
 import java.util.Arrays;
@@ -53,7 +52,6 @@ class Student {
 	int kor, eng, math;
 	int total;
 	double avg;
-	int i = 0;
 
 	Student() {
 	}
@@ -62,14 +60,10 @@ class Student {
 		kor = k;
 		eng = e;
 		math = m;
-
 	}
 
 	void outputMethod() {
 		System.out.printf("%5d%5d%5d", kor, eng, math);
-
-		// for(int i=0; i<score[0].length; i++)
-		// System.out.printf("%5d",sum[i]);
 	}
 }
 
