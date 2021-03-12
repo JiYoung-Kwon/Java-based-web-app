@@ -77,4 +77,17 @@ public class MemberController {
 		
 		return returnList; 
 	}
+	
+	public Member selectOne(String id) {
+		Member m = null;
+		for(int i=0; i<members.size(); i++) {
+			Member target = members.get(i);
+			if(id.equals(target.getId())){
+				m = target;
+				break;
+			}
+		}
+		
+		return m;
+	}
 }

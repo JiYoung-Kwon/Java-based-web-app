@@ -3,26 +3,32 @@ package ch11;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JSeparator;
 import java.awt.SystemColor;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class DeletePanel extends JPanel {
 	private JButton btnNewButton;
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
-	private JTextField textField;
+	private JTextField tfId;
 	private JLabel lblNewLabel_1_1;
-	private JTextField textField_1;
+	private JTextField tfIrum;
 	private JLabel lblNewLabel_1_2;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField tfPhone;
+	private JTextField tfAddress;
 	private JLabel lblNewLabel_1_2_1;
-	private JTextField textField_4;
+	private JTextField tfFindStr;
 	private JSeparator separator;
 	private JButton btnNewButton_1;
+
+	Member m;
 
 	/**
 	 * Create the panel.
@@ -32,14 +38,14 @@ public class DeletePanel extends JPanel {
 		add(getBtnNewButton());
 		add(getLblNewLabel());
 		add(getLblNewLabel_1());
-		add(getTextField());
+		add(getTfId());
 		add(getLblNewLabel_1_1());
-		add(getTextField_1());
+		add(getTfIrum());
 		add(getLblNewLabel_1_2());
-		add(getTextField_2());
-		add(getTextField_3());
+		add(getTfPhone());
+		add(getTfAddress());
 		add(getLblNewLabel_1_2_1());
-		add(getTextField_4());
+		add(getTfFindStr());
 		add(getSeparator());
 		add(getBtnNewButton_1());
 
@@ -48,10 +54,26 @@ public class DeletePanel extends JPanel {
 	public JButton getBtnNewButton() {
 		if (btnNewButton == null) {
 			btnNewButton = new JButton("\uAC80\uC0C9");
+			btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String mFindStr = tfFindStr.getText();
+					MemberController mc = new MemberController();
+					m = mc.selectOne(mFindStr);
+					if (m == null) {
+						JOptionPane.showMessageDialog(DeletePanel.this, "찾는 데이터가 없습니다.");
+					} else {
+						tfId.setText(m.getId());
+						tfIrum.setText(m.getIrum());
+						tfPhone.setText(m.getPhone());
+						tfAddress.setText(m.getAddress());
+					}
+				}
+			});
 			btnNewButton.setBounds(196, 57, 89, 23);
 		}
 		return btnNewButton;
 	}
+
 	public JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel("\uD68C\uC6D0\uC0AD\uC81C");
@@ -62,6 +84,7 @@ public class DeletePanel extends JPanel {
 		}
 		return lblNewLabel;
 	}
+
 	public JLabel getLblNewLabel_1() {
 		if (lblNewLabel_1 == null) {
 			lblNewLabel_1 = new JLabel("\uC544\uC774\uB514");
@@ -69,14 +92,17 @@ public class DeletePanel extends JPanel {
 		}
 		return lblNewLabel_1;
 	}
-	public JTextField getTextField() {
-		if (textField == null) {
-			textField = new JTextField();
-			textField.setColumns(10);
-			textField.setBounds(88, 95, 166, 20);
+
+	public JTextField getTfId() {
+		if (tfId == null) {
+			tfId = new JTextField();
+			tfId.setEditable(false);
+			tfId.setColumns(10);
+			tfId.setBounds(88, 95, 166, 20);
 		}
-		return textField;
+		return tfId;
 	}
+
 	public JLabel getLblNewLabel_1_1() {
 		if (lblNewLabel_1_1 == null) {
 			lblNewLabel_1_1 = new JLabel("\uC131\uBA85");
@@ -84,14 +110,17 @@ public class DeletePanel extends JPanel {
 		}
 		return lblNewLabel_1_1;
 	}
-	public JTextField getTextField_1() {
-		if (textField_1 == null) {
-			textField_1 = new JTextField();
-			textField_1.setColumns(10);
-			textField_1.setBounds(88, 118, 166, 20);
+
+	public JTextField getTfIrum() {
+		if (tfIrum == null) {
+			tfIrum = new JTextField();
+			tfIrum.setEditable(false);
+			tfIrum.setColumns(10);
+			tfIrum.setBounds(88, 118, 166, 20);
 		}
-		return textField_1;
+		return tfIrum;
 	}
+
 	public JLabel getLblNewLabel_1_2() {
 		if (lblNewLabel_1_2 == null) {
 			lblNewLabel_1_2 = new JLabel("\uC5F0\uB77D\uCC98");
@@ -99,22 +128,27 @@ public class DeletePanel extends JPanel {
 		}
 		return lblNewLabel_1_2;
 	}
-	public JTextField getTextField_2() {
-		if (textField_2 == null) {
-			textField_2 = new JTextField();
-			textField_2.setColumns(10);
-			textField_2.setBounds(88, 141, 166, 20);
+
+	public JTextField getTfPhone() {
+		if (tfPhone == null) {
+			tfPhone = new JTextField();
+			tfPhone.setEditable(false);
+			tfPhone.setColumns(10);
+			tfPhone.setBounds(88, 141, 166, 20);
 		}
-		return textField_2;
+		return tfPhone;
 	}
-	public JTextField getTextField_3() {
-		if (textField_3 == null) {
-			textField_3 = new JTextField();
-			textField_3.setColumns(10);
-			textField_3.setBounds(88, 164, 331, 20);
+
+	public JTextField getTfAddress() {
+		if (tfAddress == null) {
+			tfAddress = new JTextField();
+			tfAddress.setEditable(false);
+			tfAddress.setColumns(10);
+			tfAddress.setBounds(88, 164, 331, 20);
 		}
-		return textField_3;
+		return tfAddress;
 	}
+
 	public JLabel getLblNewLabel_1_2_1() {
 		if (lblNewLabel_1_2_1 == null) {
 			lblNewLabel_1_2_1 = new JLabel("\uC8FC\uC18C");
@@ -122,14 +156,16 @@ public class DeletePanel extends JPanel {
 		}
 		return lblNewLabel_1_2_1;
 	}
-	public JTextField getTextField_4() {
-		if (textField_4 == null) {
-			textField_4 = new JTextField();
-			textField_4.setColumns(10);
-			textField_4.setBounds(20, 58, 166, 20);
+
+	public JTextField getTfFindStr() {
+		if (tfFindStr == null) {
+			tfFindStr = new JTextField();
+			tfFindStr.setColumns(10);
+			tfFindStr.setBounds(20, 58, 166, 20);
 		}
-		return textField_4;
+		return tfFindStr;
 	}
+
 	public JSeparator getSeparator() {
 		if (separator == null) {
 			separator = new JSeparator();
@@ -137,9 +173,35 @@ public class DeletePanel extends JPanel {
 		}
 		return separator;
 	}
+
 	public JButton getBtnNewButton_1() {
 		if (btnNewButton_1 == null) {
 			btnNewButton_1 = new JButton("\uC0AD\uC81C");
+			btnNewButton_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if (m == null) {
+						JOptionPane.showMessageDialog(DeletePanel.this, "먼저 검색하세요.");
+					} else {
+						MemberController mc = new MemberController();
+						String msg = mc.delete(m);
+						JOptionPane.showMessageDialog(DeletePanel.this, msg);
+					}
+
+					/*
+					 * String id = tfId.getText(); String irum = tfIrum.getText(); String phone =
+					 * tfPhone.getText(); String address = tfAddress.getText();
+					 * 
+					 * Member m = new Member(id,irum,phone,address);
+					 * 
+					 * MemberController mc = new MemberController(); String msg = mc.delete(m);
+					 * JOptionPane.showMessageDialog(DeletePanel.this, msg);
+					 * 
+					 * tfFindStr.setText(null); tfId.setText(null); tfIrum.setText(null);
+					 * tfPhone.setText(null); tfAddress.setText(null);
+					 */
+
+				}
+			});
 			btnNewButton_1.setBackground(SystemColor.menu);
 			btnNewButton_1.setBounds(88, 195, 89, 23);
 		}
