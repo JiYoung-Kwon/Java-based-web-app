@@ -9,11 +9,18 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Element;
+import javax.swing.text.StyledDocument;
+
 public class ClientController implements Runnable {
 	ClientFrame cf;
 
 	BufferedWriter send; // 전송
 	BufferedReader receive; // 수신
+
+	Element root = null;
+	Element element = null;
 
 	public ClientController(ClientFrame cf) {
 		this.cf = cf;
@@ -32,11 +39,21 @@ public class ClientController implements Runnable {
 			receive = new BufferedReader(isr);
 
 			sendMsg("<div>권지영님이 접속하셨습니다.</div>");
+			
+			root = cf.document.getRootElements()[0];
+			element = root.getElement(0);
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			String msg = "<font color = 'red'>서버 접속 시 오류 발생</font>";
-			cf.getTextPane().setText(msg);
+
+			try {
+				cf.document.insertBeforeEnd(element, msg);
+				cf.getTextPane().setCaretPosition(cf.document.getLength());
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
 		}
 	}
 
@@ -55,7 +72,17 @@ public class ClientController implements Runnable {
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+		// 데이터를 receive하는 부분
+		while (true) {
+			try {
+				String msg = receive.readLine();
+				//StyledDocument sd = cf.getTextPane().getStyledDocument();
+				//sd.insertString(sd.getLength(), msg, null);
+				cf.document.insertBeforeEnd(element, msg);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 
 	}
 }

@@ -7,6 +7,10 @@ import java.net.InetAddress;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.Element;
+import javax.swing.text.html.HTMLDocument;
+import javax.swing.text.html.HTMLEditorKit;
+import javax.swing.text.html.StyleSheet;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -40,7 +44,9 @@ public class ServerFrame extends JFrame {
 	 */
 	
 	ServerController sc;
-	
+	HTMLEditorKit editorKit;
+	HTMLDocument document;
+	StyleSheet styleSheet;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -79,11 +85,35 @@ public class ServerFrame extends JFrame {
 		try {
 			InetAddress ia = InetAddress.getLocalHost();
 			tfServerIP.setText(ia.getHostAddress());
+			
+			editorKit = new HTMLEditorKit();
+			
+			styleSheet = new StyleSheet();
+			
+			styleSheet.addRule("div{border:1px solid #0000ff; padding:5px; width:80%;margin-bottom:10px;}");
+			styleSheet.addRule(".left{color:#ff0000}");
+			styleSheet.addRule(".right{color:#0000ff}");
+			
+			editorKit.setStyleSheet(styleSheet);
+			document = (HTMLDocument)editorKit.createDefaultDocument();
+			
+			textPane.setEditorKit(editorKit);
+			textPane.setDocument(document);
+	
 			//throw new Exception();
 		}
 		catch(Exception e) {
 			e.printStackTrace();
-			textPane.setText("<font color ='red'> IP주소를 가져오는데 오류가 발생함</font>");
+			String msg = "<font color ='red'> IP주소를 가져오는데 오류가 발생함</font>";
+			Element root = document.getRootElements()[0];
+			Element element = root.getElement(0);
+			try {
+				document.insertBeforeEnd(element, msg);
+				textPane.setCaretPosition(document.getLength()); //스크롤바를 하단으로 이동.
+			}
+			catch(Exception ex) {
+				ex.printStackTrace();
+			}
 		}
 	}
 	public JLabel getLblNewLabel() {
@@ -166,6 +196,8 @@ public class ServerFrame extends JFrame {
 		if (textPane == null) {
 			textPane = new JTextPane();
 			textPane.setContentType("text/html");
+			
+
 		}
 		return textPane;
 	}
@@ -194,6 +226,13 @@ public class ServerFrame extends JFrame {
 	public JButton getBtnField() {
 		if (btnField == null) {
 			btnField = new JButton("\uC804\uC1A1");
+			btnField.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String msg = String.format("<div class = right>%s</div>", tfMsg.getText());
+					
+					sc.sendAll(msg);
+				}
+			});
 			btnField.setBounds(419, 297, 89, 23);
 		}
 		return btnField;
