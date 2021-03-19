@@ -3,6 +3,7 @@ package ch16.objectStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,8 @@ public class ServerController implements Runnable {
 	Element root = null;
 	Element element = null;
 	Data data = new Data();
+
+	boolean threadFlag = true;
 
 	public ServerController(ServerFrame sf) {
 		this.sf = sf;
@@ -55,7 +58,7 @@ public class ServerController implements Runnable {
 	@Override
 	public void run() {
 
-		while (true) {
+		while (threadFlag) {
 
 			try {
 				Socket socket = serverSocket.accept(); // blocking mode로 대기하다가 접속이 되면 소켓 생성
@@ -87,6 +90,7 @@ public class ServerController implements Runnable {
 	public void sendAll(Data data) {
 		try {
 			for (ServerReceiveThread srt : clients) {
+				//나 자신에게는 모든 유저의 아이디값을 users에 담아 전달		
 				srt.sendMsg(data);
 			}
 
@@ -96,5 +100,42 @@ public class ServerController implements Runnable {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+	}
+
+	public void serverStop() {
+		//모든 접속자에게 서버 종료 사실을 전달할 데이터
+		Data data = new Data();
+		data.setId("server");
+		data.setCommand("shutdown");
+		data.setMsg("서버를 종료합니다.");	
+
+		// 4) 스레드 중지
+		threadFlag = false;
+		String ip = sf.getTfServerIP().getText();
+		int port = Integer.parseInt(sf.getTfPort().getText());
+
+		try {
+			Socket socket = new Socket(ip, port);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		for (ServerReceiveThread srt : clients) {
+			srt.sendMsg(data); // 1) shutdown 메시지 전달
+			srt.threadFlag = false; // 5) ServerReceiveThread 반복문 중지
+		}
+		
+		//3) clients collection 초기화
+		clients.clear();
+		
+		//6) 버튼 활성화/비활성화 처리
+		sf.getBtnStart().setEnabled(true);
+		sf.getBtnStop().setEnabled(false);
+		sf.getBtnSend().setEnabled(false);
+		
+		//2) 접속자 명단을 모두 초기화
+		sf.listModel.clear();
+		sf.getList().setModel(sf.listModel);
 	}
 }

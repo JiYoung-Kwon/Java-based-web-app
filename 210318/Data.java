@@ -8,7 +8,15 @@ public class Data implements Serializable{
 	String id;
 	String command;
 	String msg;
+	Object[] users;
 	
+	
+	public Object[] getUsers() {
+		return users;
+	}
+	public void setUsers(Object[] users) {
+		this.users = users;
+	}
 	public String getId() {
 		return id;
 	}

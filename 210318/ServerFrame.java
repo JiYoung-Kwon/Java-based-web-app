@@ -13,6 +13,7 @@ import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
@@ -37,7 +38,7 @@ public class ServerFrame extends JFrame {
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_3;
 	private JTextField tfMsg;
-	private JButton btnField;
+	private JButton btnSend;
 
 	/**
 	 * Launch the application.
@@ -47,6 +48,9 @@ public class ServerFrame extends JFrame {
 	HTMLEditorKit editorKit;
 	HTMLDocument document;
 	StyleSheet styleSheet;
+	
+	DefaultListModel<String> listModel = new DefaultListModel<String>();	
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -80,7 +84,7 @@ public class ServerFrame extends JFrame {
 		contentPane.add(getScrollPane());
 		contentPane.add(getScrollPane_1());
 		contentPane.add(getTfMsg());
-		contentPane.add(getBtnField());
+		contentPane.add(getBtnSend());
 		
 		try {
 			InetAddress ia = InetAddress.getLocalHost();
@@ -164,6 +168,11 @@ public class ServerFrame extends JFrame {
 	public JButton getBtnStop() {
 		if (btnStop == null) {
 			btnStop = new JButton("\uC11C\uBC84\uC885\uB8CC");
+			btnStop.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					sc.serverStop();
+				}
+			});
 			btnStop.setBounds(419, 7, 89, 23);
 		}
 		return btnStop;
@@ -197,7 +206,6 @@ public class ServerFrame extends JFrame {
 			textPane = new JTextPane();
 			textPane.setContentType("text/html");
 			
-
 		}
 		return textPane;
 	}
@@ -223,10 +231,10 @@ public class ServerFrame extends JFrame {
 		}
 		return tfMsg;
 	}
-	public JButton getBtnField() {
-		if (btnField == null) {
-			btnField = new JButton("\uC804\uC1A1");
-			btnField.addActionListener(new ActionListener() {
+	public JButton getBtnSend() {
+		if (btnSend == null) {
+			btnSend = new JButton("\uC804\uC1A1");
+			btnSend.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String msg = tfMsg.getText();
 					Data data = new Data();
@@ -236,8 +244,8 @@ public class ServerFrame extends JFrame {
 					sc.sendAll(data);
 				}
 			});
-			btnField.setBounds(419, 297, 89, 23);
+			btnSend.setBounds(419, 297, 89, 23);
 		}
-		return btnField;
+		return btnSend;
 	}
 }

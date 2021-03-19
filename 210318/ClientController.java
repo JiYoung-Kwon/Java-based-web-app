@@ -10,7 +10,10 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
+import java.util.Arrays;
+import java.util.List;
 
+import javax.swing.DefaultListModel;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Element;
 import javax.swing.text.StyledDocument;
@@ -20,9 +23,11 @@ public class ClientController implements Runnable {
 
 	ObjectOutputStream oos;
 	ObjectInputStream ois;
-	
+
 	Element root = null;
 	Element element = null;
+
+	boolean threadFlag = true;
 
 	public ClientController(ClientFrame cf) {
 		this.cf = cf;
@@ -37,16 +42,15 @@ public class ClientController implements Runnable {
 
 			InputStream is = socket.getInputStream();
 			ois = new ObjectInputStream(is);
-			
+
 			root = cf.document.getRootElements()[0];
 			element = root.getElement(0);
-			
+
 			Data data = new Data();
 			data.setId(cf.getTfId().getText());
 			data.setCommand("login");
 			data.setMsg("로그인하였습니다");
 			sendMsg(data);
-			
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -66,7 +70,7 @@ public class ClientController implements Runnable {
 		try {
 			oos.writeObject(data);
 			oos.flush();
-			
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -77,20 +81,63 @@ public class ClientController implements Runnable {
 	@Override
 	public void run() {
 		// 데이터를 receive하는 부분
-		while (true) {
+		while (threadFlag) {
 			try {
-				Data data = (Data)ois.readObject();
+				Data data = (Data) ois.readObject();
+
 				String msg = "";
-				if(data.getId().equals(cf.getTfId().getText())) {
-					msg = String.format("<div class='%s'>%s:%s</div>", "right",data.getId(),data.getMsg());
-				}
-				else
-					msg = String.format("<div class='%s'>%s:%s</div>", "left",data.getId(),data.getMsg());
+				if (data.getId().equals(cf.getTfId().getText())) {
+					msg = String.format("<div class='%s'>%s:%s</div>", "right", data.getId(), data.getMsg());
+				} else
+					msg = String.format("<div class='%s'>%s:%s</div>", "left", data.getId(), data.getMsg());
 				cf.document.insertBeforeEnd(element, msg);
+
+				switch (data.getCommand()) {
+				case "login":
+
+					// 자신이 로그인한 경우와 다른 유저가 로그인 한 경우 분리
+					if (data.getId().equals(cf.getTfId().getText())) {
+						List users = Arrays.asList(data.getUsers());
+						cf.listModel.addAll(users);
+						cf.getList().setModel(cf.listModel);
+					} else { //다른 유저 로그인
+						cf.listModel.addElement(data.getId());
+						cf.getList().setModel(cf.listModel);
+
+					}
+					break;
+
+				case "logout":
+					cf.listModel.removeElement(data.getId());
+					cf.getList().setModel(cf.listModel);
+					if (data.getId().equals(cf.getTfId().getText())) {
+						threadFlag = false;
+						ois.close();
+						oos.close();
+					}
+					break;
+
+				case "shutdown":
+					threadFlag = false;
+					ois.close();
+					oos.close();
+					break;
+				}
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public void disConnect() {
+		Data data = new Data();
+		data.setId(cf.getTfId().getText());
+		data.setId(cf.getTfId().getText());
+		data.setCommand("logout");
+		data.setMsg("다음에 봐요~");
+
+		sendMsg(data);
 
 	}
 }

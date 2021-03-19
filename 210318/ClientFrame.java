@@ -14,6 +14,7 @@ import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
@@ -22,6 +23,8 @@ import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class ClientFrame extends JFrame {
 
@@ -40,7 +43,9 @@ public class ClientFrame extends JFrame {
 	private JLabel lblNewLabel_3;
 	private JTextField tfMsg;
 	private JButton btnSend;
-
+	private JLabel lblNewLabel_1_1;
+	private JTextField tfId;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -49,8 +54,9 @@ public class ClientFrame extends JFrame {
 	HTMLEditorKit editorKit;
 	HTMLDocument document;
 	StyleSheet styleSheet;
-	private JLabel lblNewLabel_1_1;
-	private JTextField tfId;
+	
+	DefaultListModel<String> listModel = new DefaultListModel<String>();
+	
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -69,6 +75,12 @@ public class ClientFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public ClientFrame() {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				disConnect();
+			}
+		});
 		setTitle("\uCC44\uD305 \uD074\uB77C\uC774\uC5B8\uD2B8");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 665, 367);
@@ -169,6 +181,10 @@ public class ClientFrame extends JFrame {
 					} catch (Exception ex) {
 						ex.printStackTrace();
 					}
+					
+					btnConnect.setEnabled(false);
+					btnDisConnect.setEnabled(true);
+					btnSend.setEnabled(true);
 				}
 			});
 			btnConnect.setBounds(451, 7, 89, 23);
@@ -179,11 +195,29 @@ public class ClientFrame extends JFrame {
 	public JButton getBtnDisConnect() {
 		if (btnDisConnect == null) {
 			btnDisConnect = new JButton("\uD574\uC81C");
+			btnDisConnect.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					disConnect();
+				}
+			});
+			btnDisConnect.setEnabled(false);
 			btnDisConnect.setBounds(550, 7, 89, 23);
 		}
 		return btnDisConnect;
 	}
 
+	public void disConnect() {
+		cc.disConnect();
+		//2) 접속자 목록 모두 제거
+		listModel.clear();
+		getList().setModel(listModel);
+		
+		//3) 버튼 상태 처리
+		btnConnect.setEnabled(true);
+		btnDisConnect.setEnabled(false);
+		btnSend.setEnabled(false);
+	}
+	
 	public JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
