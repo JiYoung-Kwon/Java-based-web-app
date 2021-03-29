@@ -25,6 +25,6 @@
   * [210317 실습 코드](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/210317)
 
 * ORACLE
-  * [ORACLE 내용 정리](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/ORACLE%20내용%20정리.md)
+  * [ORACLE 내용 정리](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/Oracle%20내용%20정리.md)
   * ***
   * [210329 실습 SQL문](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/210329)
