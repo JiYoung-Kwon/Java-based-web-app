@@ -129,7 +129,7 @@
 * AND
   
     * 논리곱(∩)
-  
+    
       * | A    | B    | A and B |
         | ---- | ---- | ------- |
         | 1    | 1    | 1       |
@@ -140,7 +140,7 @@
 * OR
   
     * 논리합(∪)
-  
+    
       * | A    | B    | A and B |
         | ---- | ---- | ------- |
         | 1    | 1    | 1       |
@@ -157,3 +157,152 @@
       * 다른 방법으로는 인덱스를 이용하는 방법이 있음 
       * 하지만, 모든 데이터에 인덱스를 만들었을 시, 오히려 수행속도가 더 걸리는 경우도 있음 (데이터 추가 삭제 시, 인덱스 변경)
       * 따라서, 경우에 따라 적절하게 사용하는 것이 좋음
+
+* 집합 연산자
+
+  * UNION - 두 집합 결과 합쳐서 출력, 중복값 제거, 정렬
+
+  * UNION ALL - 두 집합 결과 합쳐서 출력, 중복값 제거 X, 정렬 X
+
+  * INTERSECT - 교집합 결과 출력 및 정렬
+
+  * MINUS - 차집합 결과 출력 및 정렬. 쿼리 순서 중요
+
+  * ```sql
+    SELECT EMPLOYEE_ID ,FIRST_NAME ,SALARY FROM EMPLOYEES e 
+    UNION
+    SELECT EMPLOYEE_ID ,FIRST_NAME ,SALARY FROM emp;
+    ```
+
+<br/>
+
+## 2장.
+
+* 단일행 함수
+  * 한 번에 하나씩 처리하는 함수
+  * 정리하지 않은 함수들은 책 내용 참고
+
+1. 문자 함수
+
+   * UPPER / LOWER : 전부 대문자/소문자 변환
+
+     * ```sql
+       SELECT UPPER(FIRST_NAME),LOWER(LAST_NAME) FROM EMPLOYEES e ;
+       ```
+
+   * LENGTH : 길이값 출력
+
+     * ```sql
+       SELECT FIRST_NAME 성명, EMAIL 이메일 ,LENGTH(EMAIL) 이메일길이 FROM EMPLOYEES;
+       ```
+
+   * CONCAT : 두 문자열 결합해 출력 (||과 동일)
+
+     * ```sql
+       SELECT CONCAT(EMAIL,'@korea.com') 이메일 FROM EMPLOYEES
+       WHERE DEPARTMENT_ID = 100;
+       ```
+
+   * LPAD / RPAD : 왼쪽/오른쪽 특정 문자 채움
+
+     * ```sql
+       SELECT FIRST_NAME 성명,LPAD(SALARY,10,'*') 급여 FROM EMPLOYEES e 
+       WHERE FIRST_NAME LIKE '%th%';
+       //급여를 10자리로 설정, 원래 데이터를 오른쪽에 두고 빈자리는 *로 채움
+       //출력 형식 : Timothy | ******2900 
+       ```
+
+   * REPLACE : 문자열 치환
+
+     * ```sql
+       SELECT FIRST_NAME , REPLACE(FIRST_NAME, SUBSTR(FIRST_NAME,1,2) ,'**') FROM EMPLOYEES e ;
+       // 이름의 앞 두자리는 '**'으로 변환하여 조회
+       ```
+
+2. 숫자 관련 함수
+
+   * CEIL - 절상. 가장 근접한 큰 정수 출력
+
+   * FLOOR - 절삭. 가장 근접한 작은 정수 출력
+
+     * ```sql
+       SELECT FIRST_NAME 성명, SALARY 급여, SALARY *0.1 세금, FLOOR(SALARY+SALARY*0.1) FROM EMPLOYEES e ;
+       ```
+
+3. 날짜 관련 함수
+
+   * SYSDATE - 시스템의 현재 날짜와 시간
+
+   * MONTHS_BETWEEN - 두 날짜 사이의 개월 수
+
+     * ```sql
+       --29) 본인이 살아온 개월수를 계산
+       SELECT MONTHS_BETWEEN(SYSDATE,'1998/04/16') FROM DUAL;
+       ```
+
+4. 형 변환 함수
+
+   * TO_CHAR(날짜 -> 문자)
+     * 날짜 표현
+       * 연도 : RRRR - Y2K 버그로 인해 등장한 연도 4자리 표기법
+       * 월 : MM
+       * 일 : DD
+       * 시간 : HH / HH24
+       * 분 : MI
+       * 초 : SS
+   * TO_CHAR(숫자 -> 문자)
+   * TO_NUMBER(문자 -> 숫자)
+   * TO_DATE (날짜처럼 생긴 문자 -> 날짜)
+
+5. 일반 함수
+
+   * NVL - NULL 값을 만나면 다른 값으로 치환해서 출력
+
+     * ```sql
+       SELECT FIRST_NAME 성명, SALARY 급여, NVL(SALARY *COMMISSION_PCT,0) 보너스
+       FROM EMPLOYEES e ;
+       ```
+
+   * DECODE - IF문을 ORACLE SQL안으로 가져온 함수
+
+     * ```sql
+       SELECT FIRST_NAME ,SALARY, DEPARTMENT_ID, DECODE(DEPARTMENT_ID,100,SALARY*.5,SALARY*.1) 보너스
+       FROM EMPLOYEES e2 ;
+       ```
+
+   * CASE
+
+     1. ```sql
+        -- DECODE문과 유사
+        CASE 조건
+        	WHEN 결과1 THEN 출력 1
+        [	WHEN 결과2 THEN 출력 2
+        	...
+        	ELSE 기타출력
+        ]
+        END '컬럼명'
+        ```
+
+     2. ```sql
+        -- IF와 유사
+        CASE
+        	WHEN 조건1 THEN 출력 1
+        [	WHEN 조건2 THEN 출력 2
+        	...
+        	ELSE 기타출력
+        ]
+        END '컬럼명'
+        ```
+
+6. 정규식(Regular Expression) 함수
+
+   * 유닉스에서 사용하는 정규식을 사용하여 다양한 검색을 할 수 있음
+   * REGEXP_LIKE 함수 - 특정 패턴과 매칭되는 결과를 검색
+
+<br/>
+
+## 3장.
+
+* 복수행 함수(그룹 함수)
+  * 여러 건의 데이터를 동시에 입력받아 결괏값 1건을 만들어주는 함수
+  * 정리하지 않은 함수들은 책 내용 참고
