@@ -306,3 +306,105 @@
 * 복수행 함수(그룹 함수)
   * 여러 건의 데이터를 동시에 입력받아 결괏값 1건을 만들어주는 함수
   * 정리하지 않은 함수들은 책 내용 참고
+  * 집계함수
+    * count () - 입력되는 데이터의 총 건수를 반환
+    * sum() - 입력된 데이터들의 합계 값을 구하는 함수
+    * avg() - 입력된 값들의 평균 값을 구해주는 함수
+  * GROUP BY 절
+    * **유의 사항**
+      1. select 절에는 group by 절에서 사용한 컬럼명만 사용 가능
+      2. 만약 group by 절에서 사용한 컬럼명이 아닌 경우, 반드시 **집계함수** 내에서 사용해야 함!!
+
+  * HAVING 절
+    * 그룹 함수를 비교 조건으로 사용하고 싶을 경우
+      * WHERE 절은 그룹 함수를 비교 조건으로 쓸 수 없음
+
+## 4장.
+
+* 정규화 -> 비정규화가 최종목적
+
+  * 비정규화
+    * 필요에 따라서 테이블이 쪼개진 상태인데, 성능,사용성 등의 요인으로 다시 두 개 이상의 테이블이 다시 하나로 합쳐지는 상태
+  * 정규화
+    * 중복데이터를 배제, NULL 값 배제
+
+* 카디션 곱(Cartesian Product)
+
+  * 조인 조건절을 잘못 기술하거나 적지 않을 경우, 해당 테이블에 대한 모든 데이터를 전부 가져오는 현상 
+  * 참조되는 테이블 행 수를 모두 곱한 값의 결과가 만들어짐
+
+* EQUI Join (등가 조인) - 기본
+
+  * 선행 테이블에서 데이터를 가져온 후, 조인 조건절을 검사해 동일한 조건을 가진 데이터를 후행 테이블에서 꺼내 오는 방법
+
+* Non-Equi Join (비등가 조인)
+
+  * 서로 틀린 것만 가져오는 것. 잘 사용하지 않음
+
+* **OUTER Join (아우터 조인)**
+
+  * Inner Join : 참여하는 모든 테이블에 데이터가 존재하는 경우에만 결괏값을 출력
+
+  * 한쪽에는 데이터가 있고 한쪽에는 없는 경우, 있는 쪽 내용을 전부 출력
+
+  * ANSI Join 구문 : LEFT OUTER JOIN
+
+  * ```sql
+    SELECT d2.DEPARTMENT_ID, DEPARTMENT_NAME, FIRST_NAME 
+    FROM DEPARTMENTS d2 LEFT OUTER JOIN EMPLOYEES e2 
+    ON d2.DEPARTMENT_ID = e2.DEPARTMENT_ID ;
+    ```
+
+* **SELF Join**
+
+  * 자주 사용
+
+  * 원하는 데이터가 하나의 테이블에 다 들어있을 경우
+
+  * ```sql
+    SELECT e.first_name, e.EMAIL FROM EMPLOYEES e JOIN EMPLOYEES l
+    ON TO_CHAR(e.HIRE_DATE,'RRRR') =  TO_CHAR(l.HIRE_DATE,'RRRR')
+    WHERE l.FIRST_NAME = 'Luis';
+    ```
+
+<br/>
+
+## 5장.
+
+* DDL : Data Definition Language(데이터 정의 언어)
+
+1. CREATE - 새로 생성하라
+
+   ```sql
+   * 문법
+   CREATE TABLE 테이블명(
+   	컬럼명 컬럼유형 옵션,
+   	...
+   );
+   ```
+
+   * 값을 입력하지 않을 경우 자동으로 NULL값이 입력됨
+   * 기본 값으로 특정값 지정
+     * DEFAULT 특정 값
+
+2. ALTER - 수정,변경
+
+   * 새로운 컬럼 추가 : ADD
+   * 테이블 컬럼 이름 변경 : RENAME
+     * 번외) 테이블명 변경 `RENAME dept6 TO dept7`
+   * 컬럼 유형(데이터 크기) 변경 : MODIFY
+   * 컬럼 삭제 : DROP
+
+3. 삭제 명령 비교
+
+   * TRUNCATE : 구조만 남는다.
+   * DROP : 남아있는 것이 없다.
+   * DELETE : 구조와 데이터가 저장되어 있던 공간만 남는다.
+
+4. Data Dictionary(데이터 딕셔너리)
+   * 오라클은 DB를 운영하기 위한 정보를 모두 특정 테이블에 모아두고 관리함. 이 테이블
+
+<br/>
+
+## 6장.
+
