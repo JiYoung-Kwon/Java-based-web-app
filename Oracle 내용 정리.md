@@ -371,7 +371,11 @@
 
 ## 5장.
 
-* DDL : Data Definition Language(데이터 정의 언어)
+* **DDL** : Data Definition Language(데이터 정의어)
+  * 데이터베이스를 정의하는 언어
+  * 오브젝트를 생성, 수정, 삭제하는 등의 데이터의 전체의 골격을 결정하는 역할을 하는 언어
+    * 오브젝트 : 오라클 DB 내부에 데이터를 관리하기 위해 생성한 다양한 저장 객체
+    * 세그먼트 : 오브젝트 중 특별히 데이터를 저장하기 위한 별도의 저장 공간을 가지는 것
 
 1. CREATE - 새로 생성하라
 
@@ -402,9 +406,169 @@
    * DELETE : 구조와 데이터가 저장되어 있던 공간만 남는다.
 
 4. Data Dictionary(데이터 딕셔너리)
+   
    * 오라클은 DB를 운영하기 위한 정보를 모두 특정 테이블에 모아두고 관리함. 이 테이블
 
 <br/>
 
 ## 6장.
+
+* **DML** : Data Manipulation Language(데이터 조작어)
+  * 정의된 데이터베이스에 입력된 레코드를 조회하거나 수정하거나 삭제하는 등의 역할을 하는 언어
+
+1. INSERT - 데이터 입력
+
+   * ```sql
+     1) INSERT INTO 테이블명(컬럼명1, 컬럼명2, ...) values(값1, 값2, ...);
+     2) INSERT INTO 테이블명 values(값1, 값2, ...);
+     --모든 컬럼의 순서대로 값을 모두 입력하려 할 때는 테이블명 뒤에 있는 컬럼명을 생략할 수 있다.
+     3) INSERT INTO 테이블명 SELECT 절 사용
+     4) -- 여러 테이블에 동시에 같은 값을 입력할 때
+         INSERT ALL 
+     	  INTO 테이블명1 values(컬럼명1, 컬럼명2, ...)
+     	  INTO 테이블명2 values(컬럼명1, 컬럼명2, ...)
+     	SELECT 절
+     ```
+
+2. UPDATE - 데이터 변경
+
+   * ```sql
+     1) update 테이블명 set 컬럼명1= 수정값1, 컬럼명2= 수정값2, ... where 조건
+     2) update 테이블명 set 컬럼명1= 수정값1, 컬럼명2= 수정값2, ... where 컬럼명=(sub query)
+     ```
+
+3.  DELETE - 데이터 삭제
+
+   * ```sql
+     delete from 테이블명 where 조건
+     ```
+
+4. MERGE - 여러 테이블 데이터 병합
+
+* **TCL** : Transaction Control Language
+  * DCL(Data Control Language)에서 트랜잭션을 제어하는 명령인 COMMIT과 ROLLBACK만을 따로 분리해서 TCL이라고 표현
+  * COMMIT : 트랜잭션 내의 작업의 결과를 확정하는 명령어
+  * ROLLBACK : 트랜잭션 내의 모든 명령어들을 취소하는 명령어
+
+<br/>
+
+## 7장.
+
+* **제약 조건**
+
+  * NOT NULL
+  * UNIQUE
+  * PRIMARY KEY
+  * FOREIGN KEY
+  * CHECK
+
+* 테이블 생성 시 지정
+
+  * ```sql
+    CREATE TABLE constTest(
+    	NO number(4)
+    		CONSTRAINT constTest_no_pk PRIMARY KEY,
+    	name varchar2(20)
+    		CONSTRAINT constTest_name_nn NOT NULL,
+    	jumin varchar2(13)
+    		CONSTRAINT constTest_jumin_nn NOT NULL
+    		CONSTRAINT constTest_jumin_uk UNIQUE,
+    	loc_code NUMBER(1)
+    		CONSTRAINT constTest_loc_ck CHECK(loc_code<5),
+    	deptno NUMBER(6)
+    		CONSTRAINT constTest_deptno_fk REFERENCES departments(department_id)
+    );
+    ```
+
+* 제약 조건 조회
+
+  * ```sql
+    SELECT * FROM USER_CONSTRAINTS WHERE TABLE_NAME = 'CONSTTEST';
+    -- 조회되지 않는 경우, 다른 스키마에 생성되었을 가능성 존재 
+    -- -> ALL_CONSTRAINTS로 확인
+    ```
+
+<br/>
+
+## 8장.
+
+* **INDEX**
+
+  * 목적 : 검색을 보다 빠르게 하기 위해
+  * primary key, unique 속성을 갖는 컬럼에는 자동으로 index 처리됨
+  * **사용조건**
+    1. 테이블에 행 수가 많을 경우
+    2. where절에 많이 사용되는 컬럼
+    3. join에 자주 사용되는 컬럼
+    4. null을 포함하는 컬럼이 많은 경우
+  * **사용 비추천**
+    1. 행 수가 적은 경우
+    2. 검색 결과가 10~15% 이상인 경우
+    3. DML이 자주 일어나는 경우(insert, update, delete)
+
+  * **종류** 
+
+    1. 고유 index(unique index) : 유일한 값을 갖는 컬럼에 index를 생성하는 경우
+    2. 비고유 index(non unique index)
+    3. 단일 index(single index) : 하나의 컬럼을 사용하여 index를 생성하는 경우
+    4. 결합 index(composite index) : 두 개 이상의 컬럼을 사용하여 index를 생성하는 경우
+    5. 함수 index(function base index) : 검색이 되는 컬럼에 연관식이 포함되는 경우
+
+  * **생성 방법**
+
+    1. `create unique index 인덱스명 on 테이블명(컬럼명)`
+    2. `create index 인덱스명 on 테이블명(컬럼명)`
+
+    4. `create index 인덱스명 on 테이블명(컬럼명1, 컬럼명2, ...)`
+    5. `create index 인덱스명 on 테이블명(salary*100);`
+
+  * index 제거
+
+    * `drop index 인덱스명`
+
+  * index 재구성 : DML이 빈번하게 수행된 경우
+
+    * `alter index 인덱스명 rebuild`
+
+<br/>
+
+## 9장.
+
+* **VIEW (뷰)**
+  * 물리적인 테이블을 근거한 논리적인 가상 테이블
+  * 실제적인 데이터는 갖고 있지 않다.
+  * **목적**
+    1. 복잡하고 긴 쿼리문을 뷰로 지정하여 단순화 시킬 수 있다.
+    2. 보안에 유리하다.
+  * view 생성
+    * `create [or replace] view 뷰이름 as select 문장`
+  * view 제거
+    * `drop view 뷰이름`
+
+<br/>
+
+## 10장.
+
+* Sub Query (서브 쿼리)
+
+  * 쿼리 안에 또 다른 쿼리를 작성하는 형태
+
+  * 서브쿼리는 그 자체적으로 완전한 하나의 실행문이 되어야 한다.
+
+  * 서브쿼리는 () 안에 작성한다.
+
+  * ```sql
+    --a) JOIN
+    SELECT e2.* FROM EMPLOYEES e2 JOIN DEPARTMENTS d
+    ON e2.DEPARTMENT_ID =d.DEPARTMENT_ID 
+    WHERE d.DEPARTMENT_NAME ='Sales';
+    
+    --b) Sub Query
+    SELECT * FROM EMPLOYEES e 
+    WHERE DEPARTMENT_ID = (SELECT DEPARTMENT_ID 
+    					   FROM DEPARTMENTS d2
+    					   WHERE DEPARTMENT_NAME = 'Sales');
+    ```
+
+  * 
 
