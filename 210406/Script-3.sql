@@ -2,15 +2,15 @@
 SELECT e.FIRST_NAME , e.SALARY 
 FROM EMPLOYEES e
 WHERE e.SALARY <ALL (SELECT e2.SALARY 
-					 FROM EMPLOYEES e2 
-					 WHERE e2.DEPARTMENT_ID = 30);
+		     FROM EMPLOYEES e2 
+		     WHERE e2.DEPARTMENT_ID = 30);
 			
 --94) 2007년도에 입사한 직원들의 최대 급여보다 급여를 많이 받는 직원들의 이름, 급여 조회(>ANY,>ALL)
 SELECT e.FIRST_NAME ,e.SALARY 
 FROM EMPLOYEES e 
 WHERE e.SALARY >ALL (SELECT e2.SALARY
-					 FROM EMPLOYEES e2
-					 WHERE TO_CHAR(e2.HIRE_DATE,'RRRR') = 2007 );
+		     FROM EMPLOYEES e2
+		     WHERE TO_CHAR(e2.HIRE_DATE,'RRRR') = 2007 );
 
 -------------------------------------------------------
 -- SEQUENCE
@@ -106,8 +106,8 @@ BEGIN
 	INTO name
 	FROM DEPARTMENTS d 
 	WHERE d.DEPARTMENT_ID = (SELECT e2.DEPARTMENT_ID 
-							 FROM EMPLOYEES e2 
-							 WHERE e2.FIRST_NAME = 'Oliver');
+				 FROM EMPLOYEES e2 
+				 WHERE e2.FIRST_NAME = 'Oliver');
 	
 	dbms_output.put_line(name);						
 END;
@@ -134,8 +134,8 @@ BEGIN
 	INTO job
 	FROM JOBS j2  
 	WHERE j2.JOB_ID = (SELECT e2.JOB_ID 
-							 FROM EMPLOYEES e2 
-							 WHERE e2.FIRST_NAME = 'Tayler');
+			   FROM EMPLOYEES e2 
+			   WHERE e2.FIRST_NAME = 'Tayler');
 	
 	dbms_output.put_line('직무명 : ' || job);						
 END;
@@ -188,8 +188,8 @@ BEGIN
 	INTO PCODE, ADDRESS
 	FROM LOCATIONS
 	WHERE LOCATION_ID = (SELECT LOCATION_ID 
-						 FROM DEPARTMENTS
-						 WHERE DEPARTMENT_NAME = 'Marketing');
+			     FROM DEPARTMENTS
+			     WHERE DEPARTMENT_NAME = 'Marketing');
 						
 	dbms_output.put_line('우편번호 : ' || pcode);
 	dbms_output.put_line('주소 : ' || address);
