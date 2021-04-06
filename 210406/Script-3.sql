@@ -1,11 +1,11 @@
---93) ºÎ¼­ ¾ÆÀÌµð°¡ 30¹øÀÎ ºÎ¼­ Á÷¿øµéÀÇ ÃÖ¼Ò ±Þ¿©º¸´Ù ÀÛÀº ±Þ¿©¸¦ ¹Þ´Â Á÷¿øÀÇ ÀÌ¸§, ±Þ¿© Á¶È¸(<ANY,<ALL)
+--93) ë¶€ì„œ ì•„ì´ë””ê°€ 30ë²ˆì¸ ë¶€ì„œ ì§ì›ë“¤ì˜ ìµœì†Œ ê¸‰ì—¬ë³´ë‹¤ ìž‘ì€ ê¸‰ì—¬ë¥¼ ë°›ëŠ” ì§ì›ì˜ ì´ë¦„, ê¸‰ì—¬ ì¡°íšŒ(<ANY,<ALL)
 SELECT e.FIRST_NAME , e.SALARY 
 FROM EMPLOYEES e
 WHERE e.SALARY <ALL (SELECT e2.SALARY 
 					 FROM EMPLOYEES e2 
 					 WHERE e2.DEPARTMENT_ID = 30);
 			
---94) 2007³âµµ¿¡ ÀÔ»çÇÑ Á÷¿øµéÀÇ ÃÖ´ë ±Þ¿©º¸´Ù ±Þ¿©¸¦ ¸¹ÀÌ ¹Þ´Â Á÷¿øµéÀÇ ÀÌ¸§, ±Þ¿© Á¶È¸(>ANY,>ALL)
+--94) 2007ë…„ë„ì— ìž…ì‚¬í•œ ì§ì›ë“¤ì˜ ìµœëŒ€ ê¸‰ì—¬ë³´ë‹¤ ê¸‰ì—¬ë¥¼ ë§Žì´ ë°›ëŠ” ì§ì›ë“¤ì˜ ì´ë¦„, ê¸‰ì—¬ ì¡°íšŒ(>ANY,>ALL)
 SELECT e.FIRST_NAME ,e.SALARY 
 FROM EMPLOYEES e 
 WHERE e.SALARY >ALL (SELECT e2.SALARY
@@ -15,34 +15,34 @@ WHERE e.SALARY >ALL (SELECT e2.SALARY
 -------------------------------------------------------
 -- SEQUENCE
 -------------------------------------------------------
--- ½ÃÄö½º¸¦ ¹ß»ý : ½ÃÄö½º¸í.nextval
--- ÇöÀç ½ÃÄö½º Á¶È¸ : ½ÃÄö½º¸í.currval
--- ¸ñÀû : Áßº¹µÇÁö ¾Ê´Â ¹øÈ£¸¦ ¹ß»ý½ÃÄÑ select¿Í °°Àº Äõ¸®¹®Àå¿¡¼­ ÇÑ°ÇÀÇ µ¥ÀÌÅÍ¸¦ °¡Á®¿À±â À§ÇÑ ¹æ¹ý
+-- ì‹œí€€ìŠ¤ë¥¼ ë°œìƒ : ì‹œí€€ìŠ¤ëª….nextval
+-- í˜„ìž¬ ì‹œí€€ìŠ¤ ì¡°íšŒ : ì‹œí€€ìŠ¤ëª….currval
+-- ëª©ì  : ì¤‘ë³µë˜ì§€ ì•ŠëŠ” ë²ˆí˜¸ë¥¼ ë°œìƒì‹œì¼œ selectì™€ ê°™ì€ ì¿¼ë¦¬ë¬¸ìž¥ì—ì„œ í•œê±´ì˜ ë°ì´í„°ë¥¼ ê°€ì ¸ì˜¤ê¸° ìœ„í•œ ë°©ë²•
 			
---95) ±âº»°ªÀ» »ç¿ëÇÏ¿© ½ÃÄö½º¸¦ »ý¼º
+--95) ê¸°ë³¸ê°’ì„ ì‚¬ìš©í•˜ì—¬ ì‹œí€€ìŠ¤ë¥¼ ìƒì„±
 CREATE SEQUENCE seq_score;
 
---96) »ý¼ºµÈ ½ÃÄö½º¸¦ ¹ß»ý //½ÇÇàÇÒ ¶§¸¶´Ù Áõ°¡
+--96) ìƒì„±ëœ ì‹œí€€ìŠ¤ë¥¼ ë°œìƒ //ì‹¤í–‰í•  ë•Œë§ˆë‹¤ ì¦ê°€
 SELECT seq_score.nextval FROM dual;
 
---97) ÇöÀç ½ÃÄö½º°ª¸¸ Á¶È¸
+--97) í˜„ìž¬ ì‹œí€€ìŠ¤ê°’ë§Œ ì¡°íšŒ
 SELECT seq_score.currval FROM dual;
 
---98) score Å×ÀÌºí¿¡ ¼ºÀûÀ» ÀÔ·ÂÇÒ ¶§ serial ÄÃ·³¿¡ ½ÃÄö½º¸¦ Àû¿ë
+--98) score í…Œì´ë¸”ì— ì„±ì ì„ ìž…ë ¥í•  ë•Œ serial ì»¬ëŸ¼ì— ì‹œí€€ìŠ¤ë¥¼ ì ìš©
 INSERT INTO score(SERIAL,MID,SUBJECT,SCORE)
-VALUES(seq_score.nextval, 'kim','±¹¾î',100);
+VALUES(seq_score.nextval, 'kim','êµ­ì–´',100);
 
 SELECT * FROM score;
 			
 -------------------------------------------------------
--- °èÃþÇü Äõ¸®
+-- ê³„ì¸µí˜• ì¿¼ë¦¬
 -------------------------------------------------------			
 SELECT LEVEL,EMPLOYEE_ID ,LPAD(' ',LEVEL*3,' ')||FIRST_NAME ,MANAGER_ID FROM EMPLOYEES
 START WITH manager_id IS NULL
 CONNECT BY PRIOR EMPLOYEE_ID =MANAGER_ID 
 ORDER siblings BY MANAGER_ID 			
 			
---°èÃþÇü Äõ¸®¿Í ÆäÀÌÂ¡ Ã³¸®¡Ù¡Ù¡Ù
+--ê³„ì¸µí˜• ì¿¼ë¦¬ì™€ íŽ˜ì´ì§• ì²˜ë¦¬â˜†â˜†â˜†
 SELECT * FROM (
 	SELECT ROWNUM rn, a.* from
 		(SELECT rownum, LEVEL,EMPLOYEE_ID ,LPAD(' ',LEVEL*3,' ')||FIRST_NAME ,MANAGER_ID FROM EMPLOYEES
@@ -52,9 +52,9 @@ SELECT * FROM (
 ) WHERE rn BETWEEN 1 AND 5;
 
 
---PL/SQLÀÇ ±âº» °ñ°Ý
+--PL/SQLì˜ ê¸°ë³¸ ê³¨ê²©
 
---1) »ç¹øÀÌ 100ÀÎ Á÷¿øÀÇ ÀÌ¸§°ú ¿¬¶ôÃ³¸¦ Ãâ·Â
+--1) ì‚¬ë²ˆì´ 100ì¸ ì§ì›ì˜ ì´ë¦„ê³¼ ì—°ë½ì²˜ë¥¼ ì¶œë ¥
 
 DECLARE
 	vname varchar2(50);
@@ -69,7 +69,7 @@ BEGIN
 	dbms_output.put_line(vphone);
 END;
 
---2) ºÎ¼­ÄÚµå°¡ 108¹øÀÎ Á÷¿øÀÇ ±Þ¿©ÇÕ°è¿Í Æò±ÕÀ» Ãâ·Â		
+--2) ë¶€ì„œì½”ë“œê°€ 108ë²ˆì¸ ì§ì›ì˜ ê¸‰ì—¬í•©ê³„ì™€ í‰ê· ì„ ì¶œë ¥		
 DECLARE
 	h NUMBER(10);
 	p number(7,2);
@@ -79,12 +79,12 @@ BEGIN
 	FROM EMPLOYEES e2 
 	WHERE DEPARTMENT_ID = 80;
 
-	dbms_output.put_line('ÇÕ°è:' || h);
-	dbms_output.put_line('Æò±Õ:' || p);
+	dbms_output.put_line('í•©ê³„:' || h);
+	dbms_output.put_line('í‰ê· :' || p);
 END;
 			
 			
---3) OliverÀÇ ºÎ¼­¸íÀ» Ãâ·Â
+--3) Oliverì˜ ë¶€ì„œëª…ì„ ì¶œë ¥
 --a) join
 DECLARE
 	dname VARCHAR(20);
@@ -112,7 +112,7 @@ BEGIN
 	dbms_output.put_line(name);						
 END;
 
---4) TaylerÀÇ Á÷¹«¸íÀ» Ãâ·Â
+--4) Taylerì˜ ì§ë¬´ëª…ì„ ì¶œë ¥
 --a) join
 DECLARE
 	job VARCHAR(20);
@@ -123,7 +123,7 @@ BEGIN
 	ON j2.JOB_ID = e2.JOB_ID 
     WHERE e2.FIRST_NAME = 'Tayler';
 	
-	dbms_output.put_line('Á÷¹«¸í : ' || job);						
+	dbms_output.put_line('ì§ë¬´ëª… : ' || job);						
 END;
 
 --b) sub query
@@ -137,17 +137,17 @@ BEGIN
 							 FROM EMPLOYEES e2 
 							 WHERE e2.FIRST_NAME = 'Tayler');
 	
-	dbms_output.put_line('Á÷¹«¸í : ' || job);						
+	dbms_output.put_line('ì§ë¬´ëª… : ' || job);						
 END;
 		
--- º¯¼öÀÇ À¯Çü
--- 1) SCALAR Çü : ¿À¶óÅ¬ÀÇ ±âº» µ¥ÀÌÅÍ À¯Çü(varchar, NUMBER, char, ...)
--- 2) %TYPE : ÇÏ³ªÀÇ ÄÃ·³ À¯ÇüÀ» °¡Á®¿È
--- 3) %ROWTYPE : Çà ÀüÃ¼ÀÇ À¯ÇüÀ» °¡Á®¿È
--- 4) RECORD TYPE: %ROWTIPE°ú À¯»çÇÏ³ª º¯¼öÀÇ ¿ä¼Ò¸¦ ÀÓÀÇ·Î Ãß°¡, »èÁ¦ÇÒ ¼ö ÀÖ´Ù.
--- 5) TABLE TYPE : ÇÏ³ªÀÇ ¹è¿­°ú À¯»çÇÔ
+-- ë³€ìˆ˜ì˜ ìœ í˜•
+-- 1) SCALAR í˜• : ì˜¤ë¼í´ì˜ ê¸°ë³¸ ë°ì´í„° ìœ í˜•(varchar, NUMBER, char, ...)
+-- 2) %TYPE : í•˜ë‚˜ì˜ ì»¬ëŸ¼ ìœ í˜•ì„ ê°€ì ¸ì˜´
+-- 3) %ROWTYPE : í–‰ ì „ì²´ì˜ ìœ í˜•ì„ ê°€ì ¸ì˜´
+-- 4) RECORD TYPE: %ROWTIPEê³¼ ìœ ì‚¬í•˜ë‚˜ ë³€ìˆ˜ì˜ ìš”ì†Œë¥¼ ìž„ì˜ë¡œ ì¶”ê°€, ì‚­ì œí•  ìˆ˜ ìžˆë‹¤.
+-- 5) TABLE TYPE : í•˜ë‚˜ì˜ ë°°ì—´ê³¼ ìœ ì‚¬í•¨
 
---5) »ç¹øÀÌ 117¹øÀÎ Á÷¿øÀÇ ÀÌ¸§°ú, ±Þ¿©, ¿¬¶ôÃ³¸¦ Á¶È¸ÇÏ½Ã¿À.(´Ü, º¯¼öÀÇ À¯ÇüÀº %typeÀ» »ç¿ëÇÒ °Í)
+--5) ì‚¬ë²ˆì´ 117ë²ˆì¸ ì§ì›ì˜ ì´ë¦„ê³¼, ê¸‰ì—¬, ì—°ë½ì²˜ë¥¼ ì¡°íšŒí•˜ì‹œì˜¤.(ë‹¨, ë³€ìˆ˜ì˜ ìœ í˜•ì€ %typeì„ ì‚¬ìš©í•  ê²ƒ)
 DECLARE
 	ename employees.first_name%TYPE; /* ename varchar2(30) */
 	sal   employees.salary%TYPE;	/*number(8,1);*/
@@ -158,12 +158,12 @@ BEGIN
 	FROM 	EMPLOYEES e2 
 	WHERE 	EMPLOYEE_ID = 117;
 
-	dbms_output.put_line('¼º¸í : ' || ename);
-	dbms_output.put_line('±Þ¿© : ' || sal);
-	dbms_output.put_line('¿¬¶ôÃ³ : ' || phone);
+	dbms_output.put_line('ì„±ëª… : ' || ename);
+	dbms_output.put_line('ê¸‰ì—¬ : ' || sal);
+	dbms_output.put_line('ì—°ë½ì²˜ : ' || phone);
 END;
 
---6) Marketing ºÎ¼­ÀÇ ¿ìÆí¹øÈ£(postal_code)¿Í Áö»çÀÇ ÁÖ¼Ò(street_address) Ãâ·Â(´Ü, º¯¼öÀÇ À¯ÇüÀº %TYPE »ç¿ë)
+--6) Marketing ë¶€ì„œì˜ ìš°íŽ¸ë²ˆí˜¸(postal_code)ì™€ ì§€ì‚¬ì˜ ì£¼ì†Œ(street_address) ì¶œë ¥(ë‹¨, ë³€ìˆ˜ì˜ ìœ í˜•ì€ %TYPE ì‚¬ìš©)
 --a) join
 DECLARE
 	pcode LOCATIONS.POSTAL_CODE%TYPE;
@@ -175,8 +175,8 @@ BEGIN
 	ON l.LOCATION_ID = d.LOCATION_ID 
 	WHERE d.DEPARTMENT_NAME = 'Marketing';
 
-	dbms_output.put_line('¿ìÆí¹øÈ£ : ' || pcode);
-	dbms_output.put_line('ÁÖ¼Ò : ' || address);
+	dbms_output.put_line('ìš°íŽ¸ë²ˆí˜¸ : ' || pcode);
+	dbms_output.put_line('ì£¼ì†Œ : ' || address);
 END;
 
 --b) sub query
@@ -191,11 +191,11 @@ BEGIN
 						 FROM DEPARTMENTS
 						 WHERE DEPARTMENT_NAME = 'Marketing');
 						
-	dbms_output.put_line('¿ìÆí¹øÈ£ : ' || pcode);
-	dbms_output.put_line('ÁÖ¼Ò : ' || address);
+	dbms_output.put_line('ìš°íŽ¸ë²ˆí˜¸ : ' || pcode);
+	dbms_output.put_line('ì£¼ì†Œ : ' || address);
 END;
 
---7) AdamÀÇ ºÎ¼­ ¾ÆÀÌµð, ºÎ¼­ÀÌ¸§, ¸Å´ÏÀú ¾ÆÀÌµð, location_ID¸¦ Á¶È¸(´Ü, º¯¼öÀÇ À¯ÇüÀº %ROWTYPE »ç¿ë)
+--7) Adamì˜ ë¶€ì„œ ì•„ì´ë””, ë¶€ì„œì´ë¦„, ë§¤ë‹ˆì € ì•„ì´ë””, location_IDë¥¼ ì¡°íšŒ(ë‹¨, ë³€ìˆ˜ì˜ ìœ í˜•ì€ %ROWTYPE ì‚¬ìš©)
 DECLARE
 	dept departments%ROWTYPE;
 BEGIN
@@ -205,13 +205,13 @@ BEGIN
 	ON d.DEPARTMENT_ID = e2.DEPARTMENT_ID 
 	WHERE e2.FIRST_NAME = 'Adam';
 
-	dbms_output.put_line('ºÎ¼­ ¾ÆÀÌµð : '|| dept.department_id);
-	dbms_output.put_line('ºÎ¼­¸í : '||dept.department_name);
-	dbms_output.put_line('¸Å´ÏÀú ¾ÆÀÌµð : '||dept.manager_id);
+	dbms_output.put_line('ë¶€ì„œ ì•„ì´ë”” : '|| dept.department_id);
+	dbms_output.put_line('ë¶€ì„œëª… : '||dept.department_name);
+	dbms_output.put_line('ë§¤ë‹ˆì € ì•„ì´ë”” : '||dept.manager_id);
 	dbms_output.put_line('Location_ID : '||dept.location_id);
 END;
 
---8) ºÎ¼­ÄÚµå°¡ 60¹øÀÎ ºÎ¼­ÀÇ ºÎ¼­¸í, ¸Å´ÏÀú¸í, ¿ìÆí¹øÈ£¸¦ Á¶È¸(RECORD type)
+--8) ë¶€ì„œì½”ë“œê°€ 60ë²ˆì¸ ë¶€ì„œì˜ ë¶€ì„œëª…, ë§¤ë‹ˆì €ëª…, ìš°íŽ¸ë²ˆí˜¸ë¥¼ ì¡°íšŒ(RECORD type)
 DECLARE
 	TYPE record_type IS RECORD
 	(	dname DEPARTMENTS.department_name%TYPE,
@@ -228,13 +228,13 @@ BEGIN
 	ON d.LOCATION_ID = l.LOCATION_ID 
 	WHERE d.DEPARTMENT_ID = 60;
    
-	dbms_output.put_line('ºÎ¼­¸í : '|| t.dname);
-	dbms_output.put_line('¸Å´ÏÀú¸í : '||t.mname);
-	dbms_output.put_line('¿ìÆí¹øÈ£ : '||t.pcode);
+	dbms_output.put_line('ë¶€ì„œëª… : '|| t.dname);
+	dbms_output.put_line('ë§¤ë‹ˆì €ëª… : '||t.mname);
+	dbms_output.put_line('ìš°íŽ¸ë²ˆí˜¸ : '||t.pcode);
 
 END;
 
---9) AllanÀÇ ±Þ¿©ÇÕ°è(±Þ¿©+±Þ¿©*¼ö¼ö·áÀ²)°¡ 15,000 ÀÌ»óÀÌ¸é °í¾×¿¬ºÀÀÚ, ¾Æ´Ï¸é Æò±Õ¿¬ºÀÀÚ¶õ ¹®ÀÚ¿­À» ±Þ¿©ÇÕ°è¿Í ÇÕ²² Ãâ·ÂÇÏ½Ã¿À.(if~then else end if)
+--9) Allanì˜ ê¸‰ì—¬í•©ê³„(ê¸‰ì—¬+ê¸‰ì—¬*ìˆ˜ìˆ˜ë£Œìœ¨)ê°€ 15,000 ì´ìƒì´ë©´ ê³ ì•¡ì—°ë´‰ìž, ì•„ë‹ˆë©´ í‰ê· ì—°ë´‰ìžëž€ ë¬¸ìžì—´ì„ ê¸‰ì—¬í•©ê³„ì™€ í•©ê»˜ ì¶œë ¥í•˜ì‹œì˜¤.(if~then else end if)
 DECLARE
 	str varchar2(30);
 	hap NUMBER;
@@ -245,15 +245,15 @@ BEGIN
 	WHERE FIRST_NAME ='Allan';
 
 	IF(hap>15000) THEN
-		str := '°í¾×¿¬ºÀÀÚ';
+		str := 'ê³ ì•¡ì—°ë´‰ìž';
 	ELSE
-		str := 'Æò±Õ¿¬ºÀÀÚ';
+		str := 'í‰ê· ì—°ë´‰ìž';
 	END IF;
 
     dbms_output.put_line('hap : '||hap ||'('||str||')');
 END;
 
---10) BruceÀÇ ºÎ¼­ÄÚµå°¡ 60¹øÀÌ¸é 'ITºÎ¼­', 80¹øÀÌ¸é '¿µ¾÷ºÎ¼­', 100¹øÀÌ¸é 'È¸°èºÎ¼­', ±× ¿Ü¿¡´Â '±âÅ¸ºÎ¼­'¸¦ ºÎ¼­ÄÚµå¿Í ÇÔ²² Ãâ·ÂÇÏ½Ã¿À.(CASE)
+--10) Bruceì˜ ë¶€ì„œì½”ë“œê°€ 60ë²ˆì´ë©´ 'ITë¶€ì„œ', 80ë²ˆì´ë©´ 'ì˜ì—…ë¶€ì„œ', 100ë²ˆì´ë©´ 'íšŒê³„ë¶€ì„œ', ê·¸ ì™¸ì—ëŠ” 'ê¸°íƒ€ë¶€ì„œ'ë¥¼ ë¶€ì„œì½”ë“œì™€ í•¨ê»˜ ì¶œë ¥í•˜ì‹œì˜¤.(CASE)
 DECLARE
 	dcode departments.department_id%TYPE;	
 	dname varchar2(20);
@@ -265,12 +265,12 @@ BEGIN
 	WHERE FIRST_NAME = 'Bruce';
 
 	dname := CASE dcode
-				WHEN 60 THEN 'ITºÎ¼­'
-				WHEN 80 THEN '¿µ¾÷ºÎ¼­'
-				WHEN 100 THEN 'È¸°èºÎ¼­'
-				ELSE '±âÅ¸ºÎ¼­'
+				WHEN 60 THEN 'ITë¶€ì„œ'
+				WHEN 80 THEN 'ì˜ì—…ë¶€ì„œ'
+				WHEN 100 THEN 'íšŒê³„ë¶€ì„œ'
+				ELSE 'ê¸°íƒ€ë¶€ì„œ'
 			 END;
 
 	dbms_output.put_line('code : '||dcode);		
 	dbms_output.put_line('name : '||dname);		
-END;
+END; 
