@@ -570,5 +570,24 @@
     					   WHERE DEPARTMENT_NAME = 'Sales');
     ```
 
-  * 
+
+* 다중행 서브 쿼리
+  * \>ANY : 서브 쿼리 결과 중 최솟값 반환
+    * `K>ANY(10,20,30)`
+    * ![1](./resources/1.png)
+  * <ANY : 서브 쿼리 결과 중 최댓값 반환
+    * `K<ANY(10,20,30)`
+    * ![2](./resources/2.png)
+  * <ALL : 서브 쿼리 결과 중 최솟값 반환
+    * `K<ALL(10,20,30)`
+    * ![3](./resources/3.png)
+  * \>ALL : 서브 쿼리 결과 중 최댓값 반환
+    * `K>ALL(10,20,30)`
+    * ![4](./resources/4.png)
+
+<br/>
+
+## 11장.
+
+* SEQUENCE(시퀀스)
 
