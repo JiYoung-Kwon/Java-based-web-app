@@ -591,3 +591,103 @@
 
 * SEQUENCE(시퀀스)
 
+  * 중복되지 않는 연속적인 일련번호
+
+  * ```sql
+    CREATE SEQUENCE sequence_name
+    [INCREMENT BY n] -- 시퀀스 번호 증가값 (default : 1)
+    [START WITH n] -- 시퀀스 시작 번호 (default : 1)
+    [MAXVALUE n | NOMAXVALUE] -- 생성 시퀀스 최댓값
+    [MINVALUE n | NOMINVALUE] -- CYCLE-새로 시작하는 값, 감소하는 시퀀스-최솟값
+    [CYCLE | NOCYCLE] -- 시퀀스 번호 순환 사용 여부
+    [CACHE n | NOCACHE] -- 시퀀스 생성 속도 개선을 위한 캐싱 여부
+    ```
+
+* 시퀀스를 발생 : 시퀀스명.nextval
+* 현재 시퀀스 조회 : 시퀀스명.currval
+* 목적 : 중복되지 않는 번호를 발생시켜 select와 같은 쿼리문장에서 한건의 데이터를 가져오기 위한 방법
+
+<br/>
+
+## 12장.
+
+* 계층형 쿼리
+  * 상하위 관계를 가진 데이터들을 출력할 때, 상하 관계를 표시하기 위해 사용
+  * 계층 관계가 보이게 출력하는 쿼리
+* 계층형 쿼리와 페이징
+  * ![5](./resources/5.png)
+
+<br/>
+
+***
+
+13,14장은 PASS
+
+***
+
+## 15장.
+
+* PL/SQL
+
+  * 오라클에서 제공하는 프로그래밍 언어
+
+  * 기본 구성
+
+    * Declare(선언부) - 변수/상수 선언
+    * Begin(실행부) - 로직 기술
+      * DBMS_OUTPUT.PUT_LINE(); - 콘솔모드 출력
+    * Exception(예외 처리부) - 예외 처리
+
+  * 변수의 유형
+
+    1) SCALAR 형 : 오라클의 기본 데이터 유형(varchar, NUMBER, char, ...)
+
+    2) %TYPE : 하나의 컬럼 유형을 가져옴
+
+    3) %ROWTYPE : 행 전체의 유형을 가져옴
+
+    4) RECORD TYPE: %ROWTIPE과 유사하나 변수의 요소를 임의로 추가, 삭제할 수 있다.
+
+    5) TABLE TYPE : 하나의 배열과 유사함
+
+  * 조건문
+
+    1. IF문
+
+       * ```plsql
+         IF (조건) THEN
+         	실행문장;
+         END IF;
+         ```
+
+       * ```plsql
+         IF (조건) THEN
+         	실행문장;
+         ELSIF (조건) THEN
+         	실행문장;
+         ELSIF (조건) THEN
+         	실행문장;	
+         END IF;
+         ```
+
+       * ```plsql
+         IF (조건) THEN
+         	실행문장;
+         ELSE (조건)
+         	실행문장;	
+         END IF;
+         ```
+
+    2. CASE 문
+
+       * ```plsql
+         CASE [조건]
+         	WHEN 조건1 THEN 결과1
+         	WHEN 조건2 THEN 결과2
+         	...
+         [ELSE 기본값]
+         END;
+         ```
+
+    
+
