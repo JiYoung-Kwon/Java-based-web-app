@@ -29,3 +29,5 @@
   * ***
   * [210329 실습 SQL문](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/210329)
   * [210330 실습 SQL문](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/210330)
+  * [210402 실습 SQL문](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/210402)
+  * [210405 실습 SQL문](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/210405)
