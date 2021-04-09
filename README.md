@@ -32,3 +32,9 @@
   * [210402 실습 SQL문](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/210402)
   * [210405 실습 SQL문](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/210405)
   * [210406 실습 SQL문](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/210406)
+  * [210407 실습 SQL문](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/210407)
+
+* HTML5 + CSS3
+  * [HTML5 + CSS3 내용 정리](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/HTML5%20%2B%20CSS3%20내용%20정리.md)
+  * ***
+  * [210408 실습 JSP](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/210408)
