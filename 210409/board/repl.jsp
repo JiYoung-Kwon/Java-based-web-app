@@ -8,31 +8,31 @@
 <title>답글</title>
 </head>
 <body>
-	<div id = 'repl'>
+	<div id = 'board'>
 		<h1>REPL</h1>
 		
-		<form name='frm_repl' method='post' action=''>
+		<form name='frm_board' method='post' action=''>
 			<label>작성자</label>
-			<input type='text' name='mid'/>
+			<input type='text' name='mid' value = 'hong'/>
 			<br/>
 			
 			<label>제목</label>
-			<input type='text' name='subject' value = 'hi...'/>
+			<input type='text' name='subject' value = '길동이'/>
 			<br/>
 			
-			<textarea name = 'doc' rows = '15'>수고하세요~~</textarea>
+			<textarea name = 'doc'></textarea>
 			<br/>
 			
 			<label>암호</label>
-			<input type='password' name='pwd' value = '1234'/>
+			<input type='password' name='pwd'/>
 			<br/>
 			
 			<label>첨부파일</label>
-			<input type='button' name='file tag' value='파일 선택'/>
-			선택된 파일 없음
+			<input type='file' name='attfile' multiple/>
 			<br/>
 			<br/>
-			<input type='button' value='작성'/>
+			
+			<input type='button' value='답글작성'/>
 			<input type='reset' value='취소'/>
 		</form>
 	
