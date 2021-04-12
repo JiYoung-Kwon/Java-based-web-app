@@ -11,7 +11,7 @@
 	<div id='modify'>
 		<h1>MODIFY</h1>
 		
-		<form name='frm_register' method='post' action=''>
+		<form name='frm_modify' method='post' action=''>
 			<label>아이디</label>
 			<input type='text' name='mid' value = 'hong'/>
 			<br/>
