@@ -600,7 +600,7 @@
 
 ***
 
-### 7-3. 배경 색, 배경 이미지
+### 7-2. 배경 색, 배경 이미지
 
 * background-color : 배경 색 지정
 * background-image : 배경 이미지
@@ -609,4 +609,82 @@
 * background-repeat : 배경 이미지 반복 방법 지정
   * repeat / repeat-x / repeat-y / no-repeat ...
 * background-size : 배경 이미지 크기 조절
+
+<br/>
+
+***
+
+### 7-3. 그라데이션
+
+* 선형 그라데이션
+  * `linear-gradient( <각도> to <방향>, color-stop, [color-stop,...]);`
+  * 방향
+    * to top / to left / to right / to bottom
+* 원형 그라데이션
+  * `radial-gradient( <최종 모양> <크기> at <위치>, color-stop, [color-stop,...]);`
+
+<br/>
+
+***
+
+## 8장.
+
+### 8-1.
+
+* 블록 레벨 요소 : 혼자 한 줄을 차지하는 요소
+  * `<p>, <hN>, <ul>, <ol>, <div>, <form>, <hr>, <table>, <fieldset> ...`
+* 인라인 레벨 요소 : 줄을 차지하지 않는 요소
+  * `<img>, <br>, <sub>, <span>, <input>, <textarea>, <label>, <button> ...`
+* 박스 모델 요소
+  * 박스 형태인 요소
+  * 속성
+    * width(너비), height(높이) : 콘텐츠 영역 크기
+    * display : 화면 배치 방법 결정
+      * `none | contents | block | inline | inline-block | table | table-cell 등... `
+
+<br/>
+
+***
+
+### 8-2.
+
+* border-style : 테두리 스타일 지정
+* border-width : 테두리 두께 지정
+* border-color : 테두리 색상 지정
+* border : 테두리 스타일(속성들) 묶어 지정
+* border-radius : 박스 모서리 둥글게 만들기
+* box-shadow : 선택 요소에 그림자 효과
+
+<br/>
+
+***
+
+### 8-3.
+
+* 여백 조절
+* margin : 현재 요소 주변 여백
+  * `margin-top | margin-right | margin-bottom | margin-left`
+  * 마진 중첩 현상
+    * 요소를 세로로 배치할 경우, 마진과 마진이 만날 때 마진 값이 큰 쪽으로 겹쳐지는 것
+    * 여러 요소들을 세로로 배치할 때, 맨 위의 마진과 맨 아래 마진에 비해 중간 마진들이 너무 커지는 것을 방지하기 위한 것
+* padding : 콘텐츠 영역과 테두리 사이 여백
+  * 다시 말해, 테두리 안쪽의 여백이라고 생각하면 됨
+  * `padding-top | padding-right | padding-bottom | padding-left`
+
+<br/>
+
+***
+
+## 9장.
+
+### 9-1. CSS 포지셔닝
+
+* box-sizing : 박스 너비 기준 정하기
+  * content-box : 콘텐츠 영역 너비 값 width
+  * border-box : 콘텐츠 영역 너비 + 패딩 + 테두리 크기까지 합쳐서 width 속성 지정 가능
+
+* float : 왼쪽이나 오른쪽 배치
+  * left : 요소를 문서의 왼쪽으로 배치
+  * right : 요소를 문서의 오른쪽으로 배치
+  * none : 어느 쪽으로도 배치하지 않음
 
