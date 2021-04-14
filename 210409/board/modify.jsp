@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <meta name = 'viewport' content = 'width = device-width, initial-scale=1.0'>
 <title>수정</title>
+<link rel ='stylesheet' type='text/css' href ='/WebStudy/css/board.css'>
 </head>
 <body>
 	<div id = 'board'>
@@ -29,11 +30,11 @@
 			
 			<label>첨부파일</label>
 			<input type='file' name='attfile' multiple/>
-			<br/>
-			<br/>
 			
-			<input type='button' value='수정'/>
-			<input type='reset' value='취소'/>
+			<div id = 'btn_zone'>
+				<input type='button' value='수정'/>
+				<input type='reset' value='취소'/>
+			</div>
 		</form>
 	
 	</div>
