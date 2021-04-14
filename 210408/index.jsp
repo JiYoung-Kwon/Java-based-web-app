@@ -27,8 +27,8 @@
 		<div id = 'center'>
 			<div id = 'sub_menu'>서브메뉴</div>
 			<div id = 'middle'>
-				<div id = 'boarder'>
-					<h3>공지사항</h3>
+				<div id = 'border'>
+					<jsp:include page="./board/search.jsp"/>
 				</div>
 				
 				<div id = 'stock'>
@@ -36,7 +36,7 @@
 				</div>
 			</div>
 			<div id = 'guestbook'>
-				방명록
+				<jsp:include page="./guestbook/list.jsp"/>
 			</div>
 		
 		</div>
