@@ -31,8 +31,10 @@
 				<span>작성일</span>
 				<br/>
 				<div class ='repl'>댓글</div>
-				<input type = 'button' value = '수정'/>
-				<input type = 'button' value = '삭제'/>
+				<div class ='btn_zone'>
+					<input type = 'button' value = '수정'/>
+					<input type = 'button' value = '삭제'/>
+				</div>
 			</div>
 			
 			<div class = 'item'>
@@ -40,8 +42,10 @@
 				<span>작성일</span>
 				<br/>
 				<div class ='repl'>댓글</div>
-				<input type = 'button' value = '수정'/>
-				<input type = 'button' value = '삭제'/>
+				<div class ='btn_zone'>
+					<input type = 'button' value = '수정'/>
+					<input type = 'button' value = '삭제'/>
+				</div>
 			</div>
 			
 			<div class = 'item'>
@@ -49,8 +53,10 @@
 				<span>작성일</span>
 				<br/>
 				<div class ='repl'>댓글</div>
-				<input type = 'button' value = '수정'/>
-				<input type = 'button' value = '삭제'/>
+				<div class ='btn_zone'>
+					<input type = 'button' value = '수정'/>
+					<input type = 'button' value = '삭제'/>
+				</div>
 			</div>
 		</div>
 	</div>
