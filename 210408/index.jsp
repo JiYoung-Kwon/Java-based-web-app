@@ -25,14 +25,16 @@
 		</header>
 		
 		<div id = 'center'>
-			<div id = 'sub_menu'>서브메뉴</div>
+			<div id = 'sub_menu'>
+				서브메뉴
+			</div>
 			<div id = 'middle'>
 				<div id = 'border'>
 					<jsp:include page="./board/search.jsp"/>
 				</div>
 				
 				<div id = 'stock'>
-					<h3>재고현황</h3>
+					<jsp:include page="./member/modify.jsp"/>
 				</div>
 			</div>
 			<div id = 'guestbook'>
