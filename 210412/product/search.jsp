@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <meta name = 'viewport' content = 'width=device-width, initial-scale = 1.0'>
 <title>제품 입출고 조회</title>
+<link rel='stylesheet' type='text/css' href='./css/product.css'>
 </head>
 <body>
 	<div id = 'product'>
@@ -13,7 +14,7 @@
 		
 		<form name = 'frm_product' method = 'post' action =''>
 			<input type ='button' value = '입력'/>
-			<div>
+			<div class ='find_zone'>
 				<label>
 					<input type ='checkbox' name = 'gubun' value = '입고'>입고
 				</label>
@@ -31,54 +32,33 @@
 			</div>
 		</form>
 		<hr/>
-		<div>
-			<span>NO</span>
-			<span>구분</span>
-			<span>일자</span>
-			<span>제품코드</span>
-			<span>제품명</span>
-			<span>수량</span>
-			<span>단가</span>
-			<span>금액</span>
+		<div class = 'title'>
+			<span class = 'no'>NO</span>
+			<span class = 'gubun'>구분</span>
+			<span class = 'nal'>일자</span>
+			<span class = 'code'>제품코드</span>
+			<span class = 'pname'>제품명</span>
+			<span class = 'ea'>수량</span>
+			<span class = 'price'>단가</span>
+			<span class = 'amt'>금액</span>
 		</div>
 		<hr/>
-		<div>
-			<div>
-				<span>100</span>
-				<span>입고</span>
-				<span>2021-04-17(월)</span>
-				<span>a001</span>
-				<span>컴퓨터 본체</span>
-				<span>1,000</span>
-				<span>1,000</span>
-				<span>1,000,000</span>
+		<div class = 'items'>
+			<div class ='item'>
+				<span class = 'no'>100</span>
+				<span class = 'gubun'>입고</span>
+				<span class = 'nal'>2021-04-17(월)</span>
+				<span class = 'code'>a001</span>
+				<span class = 'pname'>컴퓨터 본체</span>
+				<span class = 'ea'>1,000</span>
+				<span class = 'price'>1,000</span>
+				<span class = 'amt'>1,000,000</span>
 			</div>
 			
-			<div>
-				<span>100</span>
-				<span>입고</span>
-				<span>2021-04-17(월)</span>
-				<span>a001</span>
-				<span>컴퓨터 본체</span>
-				<span>1,000</span>
-				<span>1,000</span>
-				<span>1,000,000</span>
-			</div>
-			
-			<div>
-				<span>100</span>
-				<span>입고</span>
-				<span>2021-04-17(월)</span>
-				<span>a001</span>
-				<span>컴퓨터 본체</span>
-				<span>1,000</span>
-				<span>1,000</span>
-				<span>1,000,000</span>
-			</div>
 		</div>
 		<hr/>
 		
-		<div>
+		<div id = 'btn_zone'>
 			<input type ='button' value ='맨첨'/>
 			<input type ='button' value ='이전'/>
 			<input type ='button' value ='1'/>

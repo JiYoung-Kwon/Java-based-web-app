@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0'>
 <title>제품 입출고 수정</title>
+<link rel='stylesheet' type='text/css' href='./css/product.css'>
 </head>
 <body>
 	<div id = 'product'>
@@ -44,9 +45,10 @@
 			<label>작성자</label>
 			<input type = 'text' name = 'mid' />
 			<hr/>
-			
-			<input type = 'button' value = '수정'/>
-			<input type = 'reset' value= '취소'/>
+			<div id = 'btn_zone'>
+				<input type = 'button' value = '수정'/>
+				<input type = 'reset' value= '취소'/>
+			</div>
 		</form>
 	</div>
 </body>
