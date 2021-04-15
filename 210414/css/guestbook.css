@@ -7,7 +7,7 @@
 @charset "UTF-8";
 
 #guestbook form>textarea{
-	width:400px;
+	width:300px;
 	height:100px;
 }
 
@@ -26,4 +26,8 @@
 
 #guestbook .item{
 	margin-bottom:7px;
+}
+
+#guestbook .item>.btn_zone{
+	text-align:right;
 }
