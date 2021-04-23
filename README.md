@@ -42,3 +42,7 @@
   * [210412 실습 JSP](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/210412)
   * [210413 실습 JSP](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/210413)
   * [210414 실습 JSP](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/210414)
+  * [210415 실습 JSP](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/210415)
+
+* JAVASCRIPT
+  * [210416 실습 JSP](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/210416)
