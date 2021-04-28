@@ -52,3 +52,4 @@
   * [210423 실습 JSP](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/210423)
   * [210426 JS, Ajax 실습](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/210426)
   * [210427 Ajax 실습](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/210427)
+  * [210428 Ajax 실습, DB 연동](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/210428)
