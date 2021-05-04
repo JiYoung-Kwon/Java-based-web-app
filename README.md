@@ -55,3 +55,7 @@
   * [210428 Ajax 실습, DB 연동](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/210428)
   * [210429 Ajax 실습, DB 연동](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/210429)
   * [210430 Ajax 실습, jQuery](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/210430)
+  * [210503 Ajax 실습, jQuery](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/210503)
+
+* ANDROID
+  * [210504 Android 실습](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/210504)
