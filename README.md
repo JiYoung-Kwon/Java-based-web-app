@@ -6,7 +6,7 @@
   * [자바 용어 모음](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/자바%20용어%20모음.md)
   * [자바 내용 정리](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/자바%20내용%20정리.md)
   * ***
-  * [210204 ~ 210205 문제 및 소스코드](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/210204-05)
+  * [210204 ~ 210205 문제 및 소스코드](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/실습/210204-05)
   * [210208 문제 및 소스코드, 알고리즘](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/210208)
   * [210209 문제 및 소스코드, 알고리즘](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/210209)
   * [210210 문제 및 소스코드, 알고리즘](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/210210)
