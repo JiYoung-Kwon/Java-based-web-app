@@ -63,4 +63,18 @@
         android:onClick="onTable"
         android:text="TableLayoutActivity" />
 
+    <Button
+        android:id="@+id/button26"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onFrame"
+        android:text="FrameLayoutActivity" />
+
+    <Button
+        android:id="@+id/button28"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onScroll"
+        android:text="ScrollViewActivity" />
+
 </LinearLayout>

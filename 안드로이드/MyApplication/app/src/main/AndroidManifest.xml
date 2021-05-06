@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-        <activity android:name=".TableLayoutActivity"></activity>
+        <activity android:name=".ScrollViewActivity"></activity>
+        <activity android:name=".FrameLayoutActivity" />
+        <activity android:name=".TableLayoutActivity" />
         <activity android:name=".RelativeActivity" />
         <activity android:name=".GravyActivity" />
         <activity android:name=".LayoutCodeActivity" />

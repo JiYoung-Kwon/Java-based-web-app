@@ -54,4 +54,14 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this,TableLayoutActivity.class);
         startActivity(intent);
     }
+
+    public void onFrame(View v){
+        Intent intent = new Intent(this,FrameLayoutActivity.class);
+        startActivity(intent);
+    }
+
+    public void onScroll(View v){
+        Intent intent = new Intent(this,ScrollViewActivity.class);
+        startActivity(intent);
+    }
 }
