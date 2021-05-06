@@ -1,0 +1,80 @@
+@charset "UTF-8";
+
+*{
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+}
+
+#array3{
+	width:800px;
+	margin:50px auto;
+}
+
+/* 왼쪽 영역 */
+#array3 .left{
+	width:300px;
+	float:left;
+	border:3px solid #aaa;
+	padding:30px;
+	min-height:250px;
+}
+
+.left form>label{
+	display:inline-block;
+	width:70px;
+	text-align:rightl
+}
+
+.left form>input[type=text]{
+	width:80px;
+}
+
+.left .btn_zone{
+	text-align:center;
+}
+
+.left hr{
+	margin-top:5px;
+	margin-bottom:5px;
+}
+
+/* 오른쪽 영역 */
+#array3 .right{
+	width:500px;
+	float:right;
+	border:3px solid #aaa;
+	padding:30px;
+	min-height:250px;
+}
+
+.right span{
+	display:inline-block;
+	line-height:24px;
+}
+
+.right>.title{
+	background-color:#ccc;
+	padding-left:10px;
+}
+
+.mid{width:80px;}
+.kor{width:80px;}
+.mat{width:80px;}
+.tot{width:80px;}
+.avg{width:80px;}
+
+#items div:hover{
+	background-color : #ddd;
+	cursor:pointer;
+}
+
+
+/* 상태 표시줄 영역 */
+#array3 #info{
+	clear:both;
+	background-color:#eee;
+	color:#f00;
+	text-align:center;
+	padding:6px 0;
+}

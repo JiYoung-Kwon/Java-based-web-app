@@ -1,0 +1,25 @@
+기능
+* 2~20까지의 for문 수행
+	- static void forMethod()
+* 소인수분해
+	- static int[] whileMethod(int num)
+* 소인수분해 한 것 출력하기
+	- static void printMethod(int num, int[] arr)
+
+
+함수 호출 및 오류 검사
+1. main
+	- forMethod 호출
+		- forMethod()
+		- 연산 결과 및 오류 검사
+			- System.out.println(num + " " + Arrays.toString(arr));
+2. forMethod
+	- whileMethod 호출 -> 해당 수 소인수 분해 후 배열 저장 -> arr 값 return
+		- int[] arr = whileMethod(num);
+		- 연산 결과 및 오류 검사
+			- System.out.println(Arrays.toString(arr));
+
+	- return 받은 배열을 가지고 printMethod 호출 -> 출력
+		- printMethod(num, arr);
+		- 연산 결과 및 오류 검사
+			- System.out.println(num + " " + Arrays.toString(arr));
