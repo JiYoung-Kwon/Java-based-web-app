@@ -21,7 +21,7 @@
             android:text="제목" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName2"
+            android:id="@+id/etSubject"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="5"
@@ -32,7 +32,7 @@
     </LinearLayout>
 
     <EditText
-        android:id="@+id/editTextTextMultiLine"
+        android:id="@+id/etDoc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/btnRegister"
@@ -47,5 +47,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="Button" />
+        android:onClick="onRegister"
+        android:text="작성" />
 </RelativeLayout>
