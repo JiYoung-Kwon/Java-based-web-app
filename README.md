@@ -58,4 +58,4 @@
   * [210503 Ajax 실습, jQuery](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/실습/210503)
 
 * ANDROID
-  * [210504 Android 실습](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/실습/210504)
+  * [210504~10 Android 실습](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/실습/210504)
