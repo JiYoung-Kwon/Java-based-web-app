@@ -58,4 +58,9 @@
   * [210503 Ajax 실습, jQuery](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/실습/210503)
 
 * ANDROID
-  * [210504 Android 실습](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/실습/210504)
+  * [210504~10 Android 실습](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/안드로이드)
+
+* JSP
+  * [210511 JSP 실습](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/실습/210511)
+  * [210512 JSP 실습](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/실습/210512)
+  * [210513 JSP 실습](https://github.com/JiYoung-Kwon/Java-based-web-app/tree/main/실습/210513)
