@@ -7,15 +7,16 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static String NAME = "note.db";
-    public static int VERISION = 1;
+    public static int VERSION = 1;
     SQLiteDatabase db;
 
     public DatabaseHelper(Context context){
-        super(context, NAME, null, VERISION);
+        super(context, NAME, null, VERSION);
     }
 
     @Override
@@ -56,7 +57,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public List<Data> search(String findStr){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        List<Data> list = null;
+        List<Data> list = new ArrayList<Data>();;
         db = this.getReadableDatabase();
         String sql = "select * from note where subject like ? or doc like ? ";
         String[] params = {"%" + findStr + "%", "%" + findStr + "%"};
@@ -71,6 +72,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 list.add(data);
             }
+            c.close();
         }catch(Exception ex){
             list = null;
         }
