@@ -1,0 +1,71 @@
+/*-------------------
+   제품 입출고와 관련된 스타일
+   작성자 : 권지영
+   작성일 : 2021.04
+-------------------*/
+
+@charset "UTF-8";
+
+#product{
+	margin-top:15px;
+	border-radius : 8px;
+	padding :0px;
+	background-color : #eee;
+}
+
+#product>h1{
+	font-size : 18pt;
+	color:#00f;
+	margin-bottom:15px;
+}
+
+#product>form>label{
+	display:inline-block;
+	width:70px;
+}
+
+#product>form>#btn_zone{
+	text-align:center;
+	margin-top:10px;
+	padding-top:10px;
+	border-top : 2px dotted #aaa;
+}
+
+/* 입출고 조회*/
+#product .find_zone{
+	display:inline-block;
+	float : right;
+}
+
+#product .title{
+	border-top: 2px solid #aaa;
+	border-bottom : 2px solid #aaa;
+	margin-top:10px;
+}
+
+#product .title>span, #product .item>span{
+	display:inline-block;
+}
+
+#product .no{width:50px;}
+#product .gubun {width:50px;}
+#product .nal{width:110px;}
+#product .code{width:80px;}
+#product .pname{width:110px;}
+#product .ea{width:60px;}
+#product .price{width:60px;}
+#product .amt{width:90px;}
+
+#product #btn_zone{
+	text-align:center;
+	margin-top:10px;
+	padding-top:10px;
+	border-top:2px dotted #777;
+}
+
+#product .item:hover{
+	background-color: #aaa;
+	cursor:pointer;
+}
+
+
