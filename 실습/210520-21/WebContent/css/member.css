@@ -1,0 +1,74 @@
+/*-------------------
+   회원관리와 관련된 스타일
+   작성자 : 권지영
+   작성일 : 2021.04
+-------------------*/
+
+@charset "UTF-8";
+#member>h1{
+	font-size : 18pt;
+	margin-bottom:15px;
+}
+
+#member{
+	width:100%;
+	position: relative;
+}
+
+#member .find_zone{
+	display:inline-block;
+	float : right;
+}
+
+#member .title{
+	margin-top :10px;
+	border-top:1px solid #aaa;
+	border-bottom:1px solid #aaa;
+	background-color:#ddd;
+}
+
+#member .title>span, #member .item>span{
+	display:inline-block;
+}
+
+#member .no{width : 60px;}
+#member .mid{width:100px;}
+#member .mname{width : 120px;}
+#member .phone{width:150px;}
+#member .email{width:180px;}
+
+#member #btn_zone{
+	text-align:center;
+	margin-top:10px;
+	padding-top:10px;
+	border-top:2px dotted #777;
+}
+
+#member #btn_zone> input[type = button],
+#member #btn_zone> input[type = reset]{
+	border-radius:12px;
+	padding-left:5px;
+	padding-right:5px;
+}
+
+#member .item:hover{
+	background-color:#eef;
+	font-weight:bold;
+}
+
+/* 회원가입 폼 */
+#member .photo{
+	position:absolute;
+	top:40px;
+	right:30px;
+}
+
+#member form>label{
+	display:inline-block;
+	width:80px;
+	text-align:left;
+}
+
+#member #picture{
+	display: none;
+}
