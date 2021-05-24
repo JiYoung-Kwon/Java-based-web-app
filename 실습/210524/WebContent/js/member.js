@@ -78,7 +78,9 @@ member.init = function(){
 	$('#btnUpdateR').on('click', function(){ //저장		
 		var pwd = $('#passwordZone #pwd').val();
 		var frm = $('#frm_member')[0];
-		frm.pwd.value = pwd;	
+		frm.pwd.value = pwd;
+		
+		if(frm.findStr.value == '') frm.findStr.value = ' '; //임시 조치
 		var data = new FormData(frm);
 		
 		$.ajax({
