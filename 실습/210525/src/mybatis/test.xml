@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace = "test">	
+	<resultMap type = "mybatis.EmpVo" id = "emp_map">
+		<result property = "employeeId" column="employee_id"/>		
+		<result property = "firstName" column="first_name"/>		
+		<result property = "phoneNumber" column="phone_number"/>		
+		<result property = "salary" column="salary"/>
+	</resultMap>
+	
+	<!-- 부서코드가 100번인 직원들의 사번, 이름, 급여, 연락처를 조회 -->
+	<select id = "get_dep_list" parameterType = "Integer" resultMap = "emp_map">
+		SELECT employee_id, first_name, salary, phone_number 
+		FROM employees
+		WHERE department_id = #{_parameter}
+	</select>
+	
+	<!-- 사번을 사용하여 사원의 이름을 리턴 -->
+	<select id = "test_emp" parameterType = "Integer" resultType = "String">
+		SELECT first_name FROM employees WHERE EMPLOYEE_ID = #{_parameter}
+	</select>
+	
+	<!-- 부서 코드를 입력받아 부서명을 출력 -->
+	<select id = "get_dep_name" parameterType = "Integer" resultType = "String">
+		SELECT department_name FROM departments WHERE department_ID = #{_parameter}
+	</select>
+	
+	<!-- 제품 목록을 모두 출력 -->
+	<select id = "all_product" resultType = "product.ProductVo">
+		SELECT * FROM product
+	</select>
+	
+	<!-- 부서코드가 100번인 직원들의 사번, 이름, 급여, 연락처를 조회 -->
+	<select id = "get_dep" resultType = "mybatis.EmpVo">
+		SELECT employee_id, first_name, salary, phone_number 
+		FROM employees
+		WHERE department_id = 100
+	</select>
+	
+	<!-- 제품관리 테이블에 데이터를 추가하시오. -->
+	<insert id = "product_insert" parameterType = "product.ProductVo">
+		INSERT INTO PRODUCT(serial, gubun, nal, pcode, pname, ea, price, amt, mid) 
+		values(seq_product.nextval, #{gubun}, sysdate, #{pCode}, #{pName}, #{ea}, #{price}, #{amt}, #{mid})
+	</insert>
+
+</mapper>
