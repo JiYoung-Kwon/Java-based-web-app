@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace = "test">	
+	<resultMap type = "mybatis.EmpVo" id = "emp_map">
+		<result property = "employeeId" column="employee_id"/>		
+		<result property = "firstName" column="first_name"/>		
+		<result property = "phoneNumber" column="phone_number"/>		
+		<result property = "salary" column="salary"/>
+	</resultMap>
+	
+	<!-- 부서코드가 100번인 직원들의 사번, 이름, 급여, 연락처를 조회 -->
+	<select id = "get_dep_list" parameterType = "Integer" resultMap = "emp_map">
+		SELECT employee_id, first_name, salary, phone_number 
+		FROM employees
+		WHERE department_id = #{_parameter}
+	</select>
+	
+	<!-- 사번을 사용하여 사원의 이름을 리턴 -->
+	<select id = "test_emp" parameterType = "Integer" resultType = "String">
+		SELECT first_name FROM employees WHERE EMPLOYEE_ID = #{_parameter}
+	</select>
+	
+	<!-- 부서 코드를 입력받아 부서명을 출력 -->
+	<select id = "get_dep_name" parameterType = "Integer" resultType = "String">
+		SELECT department_name FROM departments WHERE department_ID = #{_parameter}
+	</select>
+	
+	<!-- 제품 목록을 모두 출력 -->
+	<select id = "all_product" resultType = "product.ProductVo">
+		SELECT * FROM product
+	</select>
+	
+	<!-- 부서코드가 100번인 직원들의 사번, 이름, 급여, 연락처를 조회 -->
+	<select id = "get_dep" resultType = "mybatis.EmpVo">
+		SELECT employee_id, first_name, salary, phone_number 
+		FROM employees
+		WHERE department_id = 100
+	</select>
+	
+	<!-- 제품관리 테이블에 데이터를 추가하시오. -->
+	<insert id = "product_insert" parameterType = "product.ProductVo">
+		INSERT INTO PRODUCT(serial, gubun, nal, pcode, pname, ea, price, amt, mid) 
+		values(seq_product.nextval, #{gubun}, sysdate, #{pCode}, #{pName}, #{ea}, #{price}, #{amt}, #{mid})
+	</insert>
+
+	<!-- serial=10021번인 자료의 ea와 price를 수정 -->
+	<update id = "product_update" parameterType = "product.ProductVo">
+		UPDATE PRODUCT SET ea=#{ea}, price=#{price}, amt=ea*price where serial = #{serial}
+	</update>
+	
+	<!-- serial=2번인 자료 삭제 -->
+	<delete id = 'product_delete' parameterType = "Integer">
+		DELETE FROM PRODUCT WHERE serial = #{_parameter}
+	</delete>
+	
+	<!-- 입력된 mid가 null이 아닌 경우에만 where 조건이 실행되도록 조치 -->
+	<select id="if_test" parameterType="String" resultType="member.MemberVo">
+		select * from member 
+		<if test="_parameter !=null">
+			where mid = #{_parameter} 
+		</if>
+	</select>
+	
+	<!-- 입력된 값이 1,2,3,4 중 하나이다. 이는 분기를 나타낸다. 1이면 입사일이 1~3월까지인 직원들을,
+	2이면 4~6월, 3이면 7~9월, 4이면 10~12월 EmpVo에 담아서 리턴 -->
+	
+	<select id = 'choose_test' parameterType = "Integer" resultMap = "emp_map">
+		select * from employees
+		<choose>
+			<when test= "_parameter == 1">
+				where SUBSTR(hire_date, 4,2) between 1 and 3
+			</when>
+			
+			<when test= "_parameter == 2">
+				where to_char(hire_date, 'mm') between '04' and '06'
+			</when>
+			
+			<when test= "_parameter == 3">
+				where SUBSTR(hire_date, 4,2) between 7 and 9
+			</when>
+			
+			<otherwise>
+				where SUBSTR(hire_date, 4,2) between 10 and 11
+			</otherwise>
+		</choose>
+	</select>
+	
+	<!-- where 사용
+	findStr에 값이 전달될 경우에만 employees 테이블의 first_name에 findStr이 포함된 명단을 EmpVo에 담아 출력
+	id : test.emp_find -->
+	
+	<select id = 'emp_find' parameterType = "String" resultMap = "emp_map">
+		select * from employees
+		<where>
+			<if test = "_parameter != null">
+				first_name like '%${_parameter}%'
+			</if>
+		</where>
+	</select>
+	
+	
+	
+	
+	
+</mapper>
