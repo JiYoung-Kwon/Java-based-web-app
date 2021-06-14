@@ -13,6 +13,7 @@
 <ul>
 	<li>ID = ${vo.mid } </li>
 	<li>Phone = ${vo.phone } </li>
+	<li>MSG = ${msg }</li>
 </ul>
 
 </body>

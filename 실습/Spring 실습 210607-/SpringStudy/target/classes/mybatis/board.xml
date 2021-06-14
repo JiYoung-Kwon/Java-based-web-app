@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="board">
+	<select id = 'totList' parameterType ='string' resultType = 'Integer'>
+		select count(serial) totList from board
+		where subject like #{_parameter}
+		or doc like '%${_parameter}%'
+	</select>
+	
+	<!-- 조회 -->
+	<select id = 'search' parameterType = "mvc.Page" resultType = "mvc.BoardVo">
+		SELECT * FROM(		
+			SELECT rownum rno, m.* from(
+			SELECT serial, pserial, lpad(' ', (LEVEL-1)*4, ' └ ') || subject subject,
+				   mid, to_char(mDate, 'rrrr-mm-dd') mDate, hit, 
+				   (SELECT count(serial) FROM BOARDATT WHERE b.serial = pserial) attCnt
+			FROM BOARD b
+			WHERE subject LIKE '%${findStr}%'
+			OR	  doc	  LIKE '%${findStr}%'
+			START WITH pserial IS NULL 
+			CONNECT BY PRIOR serial = pserial
+			ORDER siblings BY serial DESC) m
+		) WHERE rno BETWEEN ${startNo} AND ${endNo}
+	</select>
+</mapper>
