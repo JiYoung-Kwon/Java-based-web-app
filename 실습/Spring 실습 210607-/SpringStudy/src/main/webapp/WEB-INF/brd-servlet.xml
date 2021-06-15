@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- 자바 클래스 -->
 <beans
 	xmlns = "http://www.springframework.org/schema/beans"
 	xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
@@ -18,10 +17,12 @@
 
 	<context:annotation-config/>
 
-	<bean id='brdCtrlSample' class='mvc.BoardController' />
-	<bean id='daoSample' class = 'mvc.BoardDao'/>
+	<bean id='brdCtrl' class='board.BoardController' />
+	<bean id='dao' class = 'board.BoardDao'/>
+	<bean id='fupCtrl' class = 'board.BoardFileUploadController'/>
 	
-	<bean id='viewResolverSample'
+	
+	<bean id='viewResolver'
 			class='org.springframework.web.servlet.view.InternalResourceViewResolver'>
 			<property name='prefix' value='/board/' />
 			<property name='suffix' value='.jsp' />

@@ -11,7 +11,7 @@
 	</select>
 	
 	<!-- 조회 -->
-	<select id = 'search' parameterType = "mvc.Page" resultType = "mvc.BoardVo">
+	<select id = 'search' parameterType = "board.Page" resultType = "board.BoardVo">
 		SELECT * FROM(		
 			SELECT rownum rno, m.* from(
 			SELECT serial, pserial, lpad(' ', (LEVEL-1)*4, ' └ ') || subject subject,
@@ -25,4 +25,68 @@
 			ORDER siblings BY serial DESC) m
 		) WHERE rno BETWEEN ${startNo} AND ${endNo}
 	</select>
+
+	<!-- 상세보기 -->
+	<select id="brd_view" parameterType="Integer" resultType="board.BoardVo">
+		SELECT * FROM BOARD WHERE SERIAL = #{_parameter}
+	</select>
+	
+	<select id="brdAtt_view" parameterType="Integer" resultType="board.BoardAttVo">
+		SELECT * FROM BOARDATT WHERE PSERIAL = #{_parameter}
+	</select>
+	
+	<!-- 조회수 증가 -->
+	<update id = 'brd_hitUp' parameterType = "Integer">
+		update board set hit = hit+1 where serial = #{_parameter}
+	</update>
+	<!-- 삭제 -->
+	<delete id="brd_delete" parameterType = "board.BoardVo">
+		DELETE FROM board WHERE serial = #{serial} AND mid = #{mid} AND pwd = #{pwd}
+	</delete>
+	
+	<delete id="brdAtt_delete" parameterType = "Integer">
+		DELETE FROM BOARDATT WHERE PSERIAL = #{_parameter}
+	</delete>
+	
+	<!--  입력/댓글 처리시 사용될 serial -->
+	<select id="brd_getSerial" resultType = "Integer">
+		select seq_board.nextval from dual
+	</select>
+	
+	<!-- 입력 -->
+	<insert id = "brd_insert" parameterType = "board.BoardVo">
+		INSERT INTO board(serial, SUBJECT, DOC, MID, PWD, MDATE, HIT)
+		VALUES(#{serial}, #{subject}, #{doc}, #{mid}, #{pwd}, sysdate, 0)
+	</insert>
+	
+	<insert id = "brdAtt_insert" parameterType = "board.BoardAttVo">
+		INSERT INTO BOARDATT (serial, PSERIAL, ORIATT, SYSATT)
+		VALUES(seq_boardAtt.nextval, #{pSerial}, #{oriAtt}, #{sysAtt})
+	</insert>
+	
+	<!-- 답글 -->
+	<insert id = "brd_repl" parameterType = "board.BoardVo">
+		INSERT INTO board(serial, PSERIAL, SUBJECT, DOC, MID, PWD, MDATE, HIT)
+		VALUES(#{serial}, #{pSerial}, #{subject}, #{doc}, #{mid}, #{pwd}, sysdate, 0)
+	</insert>
+	
+	<insert id = "brdAtt_repl" parameterType = "board.BoardAttVo">
+		INSERT INTO BOARDATT (serial, PSERIAL, ORIATT, SYSATT)
+		VALUES(seq_boardAtt.nextval, #{pSerial}, #{oriAtt}, #{sysAtt})
+	</insert>
+	
+	<!-- 수정 -->
+	<update id="brd_update" parameterType = "board.BoardVo">
+		UPDATE board SET subject = #{subject}, doc = #{doc}
+		WHERE serial = #{serial} AND mid = #{mid} AND pwd = #{pwd}
+	</update>
+	
+	<delete id="brdAtt_delete2" parameterType = "board.BoardAttVo">
+		DELETE FROM BOARDATT WHERE SYSATT =  #{sysAtt} AND PSERIAL = #{pserial}
+	</delete>
+	
+	<insert id="brdAtt_insert2" parameterType = "board.BoardAttVo">		
+		INSERT INTO BOARDATT (serial, PSERIAL, ORIATT, SYSATT)
+		VALUES(seq_boardAtt.nextval, #{pSerial}, #{oriAtt}, #{sysAtt})
+	</insert>
 </mapper>
