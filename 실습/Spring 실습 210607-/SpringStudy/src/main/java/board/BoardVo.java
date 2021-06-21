@@ -1,5 +1,6 @@
 package board;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BoardVo {
@@ -14,8 +15,8 @@ public class BoardVo {
 	String pwd = "";
 	String mDate = "";
 
-	List<BoardAttVo> attList; //첨부파일 목록
-	List<BoardAttVo> delList; //삭제파일 목록
+	List<BoardAttVo> attList = new ArrayList<BoardAttVo>(); //첨부파일 목록
+	List<BoardAttVo> delList = new ArrayList<BoardAttVo>(); //삭제파일 목록
 	
 	public int getSerial() {
 		return serial;

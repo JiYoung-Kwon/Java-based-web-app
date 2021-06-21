@@ -6,9 +6,9 @@
 <meta charset="UTF-8">
 <meta name = 'viewport' content = 'width = device-width, initial-scale=1.0'>
 <title>답글</title>
-<link rel ='stylesheet' type='text/css' href ='../css/board.css'>
+<link rel ='stylesheet' type='text/css' href ='./css/board.css'>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src = '../js/board.js'></script>
+<script src = './js/board.js'></script>
 </head>
 <body>
 	<div id = 'board'>
@@ -16,11 +16,11 @@
 		
 		<form name='frm_board' id = 'frm_board' method='post' action=''>
 			<label>작성자</label>
-			<input type='text' name='mid' value = 'hong'/>
+			<input type='text' name='mid' value = '${vo.mid }'/>
 			<br/>
 			
 			<label>제목</label>
-			<input type='text' name='subject' value = '길동이'/>
+			<input type='text' name='subject' value = '${vo.subject }'/>
 			<br/>
 			
 			<textarea name = 'doc'></textarea>
@@ -29,7 +29,10 @@
 			<label>암호</label>
 			<input type='password' name='pwd'/>
 			<br/>
-				
+			
+			<input type = 'text' name = 'nowPage' value = '${param.nowPage }'/>
+			<input type = 'text' name = 'serial' value = '${param.serial }'/>
+			<input type = 'text' name = 'findStr' value = '${param.findStr }'/>
 		</form>
 	
 		<form name = 'frm_upload' id = 'frm_upload' method ='post'>
@@ -44,9 +47,6 @@
 		<div id = 'btn_zone'>			
 			<input type='button' value='답글작성' id = 'btnReplR'/>
 			<input type='button' value='취소' id = 'btnSelect'/>
-			<input type = 'hidden' name = 'nowPage' value = '${param.nowPage }'/>
-			<input type = 'hidden' name = 'serial' value = '${param.serial }'/>
-			<input type = 'hidden' name = 'findStr' value = '${param.findStr }'/>
 		</div>
 	</div>
 

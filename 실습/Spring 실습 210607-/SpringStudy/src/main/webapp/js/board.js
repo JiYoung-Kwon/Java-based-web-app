@@ -43,7 +43,9 @@ brd.init = function(){
 			contentType : false,
 			processData : false,
 			success : function(resp){
-				$('#border').load('registerR.brd', param);
+				$.post('registerR.brd', param, function(data){
+					$('#border').html(data);
+				})			
 			},
 			error : function(){
 				alert("error");
@@ -54,7 +56,7 @@ brd.init = function(){
 	$('#board #btnModify').on('click', function(){
 		var frm = $('#frm_board')[0];
 		var param = $(frm).serialize();
-		$('#border').load('./board?job=modify', param);
+		$('#border').load('modify.brd', param);
 	})
 	
 	$('#board #btnUpdate').on('click', function(){
@@ -64,22 +66,29 @@ brd.init = function(){
 	})
 	
 	$('#board #btnUpdateR').on('click', function(){
-		var frm = $('#frm_board')[0];
-		var pwd = $('#brdPasswordZone #pwd').val();
-		frm.pwd.value = pwd;
-
+		var frm = $('#frm_upload')[0];
 		var data = new FormData(frm);
 		
+		var pwd = $('#brdPasswordZone #pwd').val();
+		var frm2 = $('#frm_board')[0];
+		frm2.pwd.value = pwd;
+
 		$.ajax({
 			type : 'POST',
-			url  : 'update.fup',
+			url  : 'fup.brd',
 			enctype : 'multipart/form-data',
 			data : data,
 			contentType : false,
 			processData : false,
 			success : function(resp){
 				$('#brdPasswordZone').css({'display' : 'none'});
-				$('#border').load('modifyR.brd');
+				
+				var param = $(frm2).serialize();
+				alert(param);
+				$.post('modifyR.brd', param, function(data){
+					$('#border').html(data);
+				})
+				
 			} 
 		});
 	})
@@ -112,6 +121,7 @@ brd.init = function(){
 	
 	$('#board #btnView').on('click', function(){
 		var frm = $('#frm_board')[0];
+		frm.serial.value = serial;
 		var param = $(frm).serialize();
 		$('#border').load('./board/view.jsp', param);
 	})
@@ -119,23 +129,28 @@ brd.init = function(){
 	$('#board #btnRepl').on('click', function(){
 		var frm = $('#frm_board')[0];
 		var param = $(frm).serialize();
-		$('#border').load('./board/repl.jsp', param);
+		$('#border').load('repl.brd', param);
 	})
 	
 	$('#board #btnReplR').on('click', function(){
-		var frm = $('#frm_board')[0];
-		
+		var frm = $('#frm_upload')[0];
 		var data = new FormData(frm);
 		
 		$.ajax({
 			type : 'POST',
-			url  : 'repl.fup',
+			url  : 'fup.brd',
 			enctype : 'multipart/form-data',
 			data : data,
 			contentType : false,
 			processData : false,
 			success : function(resp){
-				$('#border').load('repl.brd');
+				alert(resp);
+				var frm2 = $('#frm_board')[0];
+				var param = $(frm2).serialize();
+				
+				$.post('replR.brd', param, function(data){
+					$('#border').html(data);
+				})
 			} 
 		});
 	})
@@ -147,7 +162,10 @@ brd.view = function(serial){
 	var frm = $('#frm_board')[0];
 	frm.serial.value = serial;
 	var param = $(frm).serialize();
-	$('#border').load('view.brd', param);
+		
+	$.post('view.brd', param, function(data){
+		$('#border').html(data);
+	})	
 }
 
 brd.move = function(nowPage){

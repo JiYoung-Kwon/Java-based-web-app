@@ -36,7 +36,6 @@ public class BoardDao {
 			System.out.println(page.getStartNo());
 			System.out.println(page.getEndNo());
 			list = sqlSession.selectList("board.search", page);
-			//sqlSession.close();
 			
 		}catch(Exception ex) {
 			ex.printStackTrace();
@@ -75,10 +74,7 @@ public class BoardDao {
 				File f = new File(BoardFileUploadController.saveDir + delVo.getSysAtt());
 				if(f.exists()) f.delete();
 			}
-		}finally {
-			sqlSession.close();
 		}
-		
 		return msg;
 	}
 	
@@ -118,7 +114,6 @@ public class BoardDao {
 			}
 
 		}
-		sqlSession.close();
 		return msg;
 	}
 	
@@ -126,8 +121,12 @@ public class BoardDao {
 		String msg = "OK";
 		int r = 0;
 		int chkCnt = 0;
+		
+		System.out.println("serial : " + vo.getSerial());
+		
 		try {
 			int serial = sqlSession.selectOne("board.brd_getSerial");
+			vo.setpSerial(vo.getSerial());
 			vo.setSerial(serial);
 			r = sqlSession.insert("board.brd_repl", vo);
 			if(r>0) {
@@ -157,7 +156,6 @@ public class BoardDao {
 				if(f.exists()) f.delete();
 			}
 		}
-		sqlSession.close();
 		return msg;
 	}
 	
@@ -174,8 +172,6 @@ public class BoardDao {
 			vo.setAttList(attList);
 		}catch(Exception ex) {
 			ex.printStackTrace();
-		}finally {
-			sqlSession.close();
 		}
 		
 		return vo;
@@ -183,32 +179,26 @@ public class BoardDao {
 	
 	public String delete(int serial) {
 		String msg = "OK";
-		
-		try {
+		List<BoardAttVo> delList = null;
+		try {		
 			BoardVo vo = new BoardVo();
 			
 			vo = sqlSession.selectOne("board.brd_view", serial);
-			List<BoardAttVo> attList = sqlSession.selectList("board.brdAtt_view",serial);
 			
-			vo.setAttList(attList);
-		
+			delList = sqlSession.selectList("board.brd_att_list", vo.getSerial());
+
 			//board 테이블 삭제
 			int r = sqlSession.delete("board.brd_delete",vo);
 			
 			if(r>0) { // 정상이면 첨부파일 삭제
-				int chkCnt = 0; //첨부파일의 수만큼 실행된 쿼리의 수
-				for(BoardAttVo v : vo.getAttList()) {
-					//pSerial 설정
-					v.setpSerial(serial);
-					//pSerial이 동일한 데이터 삭제
-					chkCnt += sqlSession.delete("board.brdAtt_delete", serial);
+				r= sqlSession.delete("board.brdAtt_delete", vo.getSerial());
 					
-					File f = new File(BoardFileUploadController.saveDir + v.getSysAtt());
-					if(f.exists()) f.delete();				
-				}
-				
-				if(chkCnt == vo.getAttList().size()) {
+				if(vo.getAttList().size() == 0 || r == vo.getAttList().size()) {
 					sqlSession.commit();
+					for(BoardAttVo v : delList) {
+						File f = new File(BoardFileUploadController.saveDir + v.getSysAtt());
+						if(f.exists()) f.delete();
+					}			
 				}else {
 					throw new Exception();
 				}
