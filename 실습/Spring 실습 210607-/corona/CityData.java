@@ -18,6 +18,7 @@ import org.w3c.dom.NodeList;
 import java.io.BufferedReader;
 import java.io.IOException;
 
+//업데이트 시간 여유롭게 11시
 public class CityData {
 	public static void main(String[] args) throws IOException {
 		String key = "CixGmUHaUR%2FsF46havl6Z9WygXCsGidMQt4T59ncgvi5FXE8vGdroGofU4sTFY9Hp6u7ljkB2KKghtFp9mVDxA%3D%3D";

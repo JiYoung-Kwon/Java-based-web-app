@@ -21,7 +21,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 //업데이트 시간 여유롭게 11시
-public class KoreaData {
+public class GlobalData {
     public static void main(String[] args) throws IOException {
     	String key = "CixGmUHaUR%2FsF46havl6Z9WygXCsGidMQt4T59ncgvi5FXE8vGdroGofU4sTFY9Hp6u7ljkB2KKghtFp9mVDxA%3D%3D";
     	
@@ -31,19 +31,17 @@ public class KoreaData {
     	SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
     	Calendar cal = Calendar.getInstance();
     	String curDate = sdf.format(cal.getTime());
-    	cal.add(cal.DATE, -7);
-    	String pastDate = sdf.format(cal.getTime());
-    	
+ 
     	System.out.println(curDate);
-    	System.out.println(pastDate);
+
     	
     	// Data URL
-        StringBuilder urlBuilder = new StringBuilder("http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson"); /*URL*/
+        StringBuilder urlBuilder = new StringBuilder("http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19NatInfStateJson"); /*URL*/
         urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "="+key); /*Service Key*/
         urlBuilder.append("&" + URLEncoder.encode("ServiceKey","UTF-8") + "=" + URLEncoder.encode("-", "UTF-8")); /*공공데이터포털에서 받은 인증키*/
         urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
         urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); /*한 페이지 결과 수*/
-        urlBuilder.append("&" + URLEncoder.encode("startCreateDt","UTF-8") + "=" + URLEncoder.encode(pastDate, "UTF-8")); /*검색할 생성일 범위의 시작*/
+        urlBuilder.append("&" + URLEncoder.encode("startCreateDt","UTF-8") + "=" + URLEncoder.encode(curDate, "UTF-8")); /*검색할 생성일 범위의 시작*/
         urlBuilder.append("&" + URLEncoder.encode("endCreateDt","UTF-8") + "=" + URLEncoder.encode(curDate, "UTF-8")); /*검색할 생성일 범위의 종료*/
         
         // URL 객체 생성 후, URL 호출
@@ -110,41 +108,39 @@ public class KoreaData {
 					Element eElement = (Element) nNode;
 								
 					System.out.println("========================");
-					System.out.println("조회 날짜 : "+ getTagValue("stateDt",eElement));
-					System.out.println("기준 시간 : "+ getTagValue("stateTime",eElement));
+					System.out.println("조회 날짜 : "+ getTagValue("stdDay",eElement));
+					System.out.println("지역명 : "+ getTagValue("areaNm",eElement));
+					System.out.println("지역명(영문) : "+ getTagValue("areaNmEn",eElement));
+					System.out.println("국가명 : "+ getTagValue("nationNm",eElement));
+					System.out.println("국가명(영문) : "+ getTagValue("nationNmEn",eElement));
 					
-					System.out.println("확진자 수 : "+ getTagValue("decideCnt",eElement));	
-					System.out.println("격리해제 수 : "+ getTagValue("clearCnt",eElement));
-					System.out.println("검사진행 수 : "+ getTagValue("examCnt",eElement));
-					System.out.println("사망자 수 : "+ getTagValue("deathCnt",eElement));
-					System.out.println("치료중 환자 수(격리중) : "+ getTagValue("careCnt",eElement));
-					System.out.println("결과 음성 수 : "+ getTagValue("resutlNegCnt",eElement));
-					System.out.println("누적 검사 수 : "+ getTagValue("accExamCompCnt",eElement));
-					System.out.println("누적 확진율 : "+ getTagValue("accDefRate",eElement));
+					System.out.println("국가별 확진자 수 : "+ getTagValue("natDefCnt",eElement));
+					System.out.println("국가별 사망자 수 : "+ getTagValue("natDeathCnt",eElement));
+					System.out.println("확진률 대비 사망률 : "+ getTagValue("natDeathRate",eElement));
 				
-					int curDecide = Integer.parseInt(getTagValue("decideCnt",eElement));
-					int curClear = Integer.parseInt(getTagValue("clearCnt",eElement));
-					int curCare = Integer.parseInt(getTagValue("careCnt",eElement));
-					int curDeath = Integer.parseInt(getTagValue("deathCnt",eElement));
-					
-					if(i!= nList.getLength()-1) {
-						nNode = nList.item(i+1);
-						eElement = (Element) nNode;
-						int yesDecide = Integer.parseInt(getTagValue("decideCnt",eElement));
-						int yesClear = Integer.parseInt(getTagValue("clearCnt",eElement));
-						int yesCare = Integer.parseInt(getTagValue("careCnt",eElement));
-						int yesDeath = Integer.parseInt(getTagValue("deathCnt",eElement));
-						
-						int todayDecide = curDecide - yesDecide;
-						int todayClear = curClear - yesClear;
-						int todayCare = curCare - yesCare;
-						int todayDeath = curDeath - yesDeath;
-						
-						System.out.println("일일 확진자 : " + todayDecide);
-						System.out.println("일일 격리해제 : " + todayClear);
-						System.out.println("일일 격리중 : " + todayCare);
-						System.out.println("일일 사망 : " + todayDeath );
-					}
+//					int curDecide = Integer.parseInt(getTagValue("decideCnt",eElement));
+//					int curClear = Integer.parseInt(getTagValue("clearCnt",eElement));
+//					int curCare = Integer.parseInt(getTagValue("careCnt",eElement));
+//					int curDeath = Integer.parseInt(getTagValue("deathCnt",eElement));
+//					
+//					if(i!= nList.getLength()-1) {
+//						nNode = nList.item(i+1);
+//						eElement = (Element) nNode;
+//						int yesDecide = Integer.parseInt(getTagValue("decideCnt",eElement));
+//						int yesClear = Integer.parseInt(getTagValue("clearCnt",eElement));
+//						int yesCare = Integer.parseInt(getTagValue("careCnt",eElement));
+//						int yesDeath = Integer.parseInt(getTagValue("deathCnt",eElement));
+//						
+//						int todayDecide = curDecide - yesDecide;
+//						int todayClear = curClear - yesClear;
+//						int todayCare = curCare - yesCare;
+//						int todayDeath = curDeath - yesDeath;
+//						
+//						System.out.println("일일 확진자 : " + todayDecide);
+//						System.out.println("일일 격리해제 : " + todayClear);
+//						System.out.println("일일 격리중 : " + todayCare);
+//						System.out.println("일일 사망 : " + todayDeath );
+//					}
 				
 				}
 			}
