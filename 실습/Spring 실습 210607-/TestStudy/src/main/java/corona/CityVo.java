@@ -11,7 +11,9 @@ public class CityVo {
 	int isolClearCnt; // 격리해제 수
 	int isolIngCnt; // 격리중 수
 	int incDec; // 전일대비 증감수
-	int qurRate; // 10만명당 발생률
+	float qurRate; // 10만명당 발생률
+	int overFlowCnt; // 해외유입 수
+	int localOccCnt; // 지역발생 수
 	
 	public String getStdDay() {
 		return stdDay;
@@ -61,10 +63,10 @@ public class CityVo {
 	public void setIncDec(int incDec) {
 		this.incDec = incDec;
 	}
-	public int getQurRate() {
+	public float getQurRate() {
 		return qurRate;
 	}
-	public void setQurRate(int qurRate) {
+	public void setQurRate(float qurRate) {
 		this.qurRate = qurRate;
 	}
 	public int getOverFlowCnt() {
@@ -79,7 +81,6 @@ public class CityVo {
 	public void setLocalOccCnt(int localOccCnt) {
 		this.localOccCnt = localOccCnt;
 	}
-	int overFlowCnt; // 해외유입 수
-	int localOccCnt; // 지역발생 수
+
 }
   

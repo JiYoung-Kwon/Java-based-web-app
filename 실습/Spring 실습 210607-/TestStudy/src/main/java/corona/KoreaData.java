@@ -93,7 +93,7 @@ public class KoreaData {
 		// HttpURLConnection 닫기
 		conn.disconnect();
 
-		System.out.println(sb.toString());
+//		System.out.println(sb.toString());
 
 		System.out.println("===================================================");
 		// XML -> DATA 파싱
@@ -127,17 +127,17 @@ public class KoreaData {
 					Element eElement = (Element) nNode;
 
 					System.out.println("========================");
-					System.out.println("조회 날짜 : " + getTagValue("stateDt", eElement));
-					System.out.println("기준 시간 : " + getTagValue("stateTime", eElement));
-
-					System.out.println("확진자 수 : " + getTagValue("decideCnt", eElement));
-					System.out.println("격리해제 수 : " + getTagValue("clearCnt", eElement));
-					System.out.println("검사진행 수 : " + getTagValue("examCnt", eElement));
-					System.out.println("사망자 수 : " + getTagValue("deathCnt", eElement));
-					System.out.println("치료중 환자 수(격리중) : " + getTagValue("careCnt", eElement));
-					System.out.println("결과 음성 수 : " + getTagValue("resutlNegCnt", eElement));
-					System.out.println("누적 검사 수 : " + getTagValue("accExamCompCnt", eElement));
-					System.out.println("누적 확진율 : " + getTagValue("accDefRate", eElement));
+//					System.out.println("조회 날짜 : " + getTagValue("stateDt", eElement));
+//					System.out.println("기준 시간 : " + getTagValue("stateTime", eElement));
+//
+//					System.out.println("확진자 수 : " + getTagValue("decideCnt", eElement));
+//					System.out.println("격리해제 수 : " + getTagValue("clearCnt", eElement));
+//					System.out.println("검사진행 수 : " + getTagValue("examCnt", eElement));
+//					System.out.println("사망자 수 : " + getTagValue("deathCnt", eElement));
+//					System.out.println("치료중 환자 수(격리중) : " + getTagValue("careCnt", eElement));
+//					System.out.println("결과 음성 수 : " + getTagValue("resutlNegCnt", eElement));
+//					System.out.println("누적 검사 수 : " + getTagValue("accExamCompCnt", eElement));
+//					System.out.println("누적 확진율 : " + getTagValue("accDefRate", eElement));
 
 					// KoreaVo에 데이터 넣기
 					vo.setStdDay(getTagValue("stateDt", eElement));
@@ -171,10 +171,10 @@ public class KoreaData {
 						int todayCare = curCare - yesCare;
 						int todayDeath = curDeath - yesDeath;
 
-						System.out.println("일일 확진자 : " + todayDecide);
-						System.out.println("일일 격리해제 : " + todayClear);
-						System.out.println("일일 격리중 : " + todayCare);
-						System.out.println("일일 사망 : " + todayDeath);
+//						System.out.println("일일 확진자 : " + todayDecide);
+//						System.out.println("일일 격리해제 : " + todayClear);
+//						System.out.println("일일 격리중 : " + todayCare);
+//						System.out.println("일일 사망 : " + todayDeath);
 
 						vo.setTodayDecide(todayDecide);
 						vo.setTodayClear(todayClear);

@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 
+import corona.CityData;
+import corona.GenderAgeData;
+import corona.GlobalData;
 import corona.KoreaData;
 
 @Controller
@@ -13,15 +16,24 @@ public class scheduleData {
 	@Autowired
 	KoreaData kData;
 	
-	@Scheduled(fixedRate = 2000) // 수행 시작 기점, 2초 후 실행
-	public void fixedRateTest() {
-		System.out.println("fixedRate: 2sec -> " + new Date());
-	}
+	@Autowired
+	GlobalData gData;
+	
+	@Autowired
+	GenderAgeData gaData;
+	
+	@Autowired
+	CityData cData;
+	
 
-	@Scheduled(cron = "35 22 17 * * *")
+	@Scheduled(cron = "55 01 15 * * *")
 	public void fixedDelayTest() {
 		try {
 			kData.parsingKorea();
+			//global은 3시 갱신, 나머지는 11시 갱신
+			gData.parsingGlobal();
+			gaData.parsingGenderAge();
+			cData.parsingCity();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

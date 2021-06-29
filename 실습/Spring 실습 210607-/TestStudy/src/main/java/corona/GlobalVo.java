@@ -9,7 +9,7 @@ public class GlobalVo {
 
 	int natDefCnt; // 국가별 확진자 수
 	int natDeathCnt; // 국가별 사망자 수
-	int natDeathRate; // 확진률 대비 사망률
+	float natDeathRate; // 확진률 대비 사망률
 	public String getStdDay() {
 		return stdDay;
 	}
@@ -46,10 +46,10 @@ public class GlobalVo {
 	public void setNatDeathCnt(int natDeathCnt) {
 		this.natDeathCnt = natDeathCnt;
 	}
-	public int getNatDeathRate() {
+	public float getNatDeathRate() {
 		return natDeathRate;
 	}
-	public void setNatDeathRate(int natDeathRate) {
+	public void setNatDeathRate(float natDeathRate) {
 		this.natDeathRate = natDeathRate;
 	}
 	

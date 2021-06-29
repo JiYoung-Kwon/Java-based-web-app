@@ -21,6 +21,11 @@
 		select * from CityData
 	</select>
 	
+	<!-- 3-1. 시도별 데이터 중 합계의 해외유입 수, 지역발생 수만 가져오기-->
+	<select id = 'searchCK' resultType = "corona.CityVo">
+		select OVERFLOWCNT, LOCALOCCCNT from CityData where CITYNM ='합계' 
+	</select>
+	
 	<!-- 4. 연령별 데이터 -->
 	<select id = 'searchGA' resultType = "corona.GenderAgeVo">
 		select * from GenderAgeData
@@ -49,8 +54,8 @@
 	 
 	<!-- 4. 연령별 데이터 -->
 	<insert id = 'insertGA' parameterType = "corona.GenderAgeVo">
-		INSERT INTO GenderAgeData(gubun, confCase, confCaseRate, death, deathRate, criticalRate)
-		VALUES(#{gubun},#{confCase},#{confCaseRate},#{death},#{deathRate},#{criticalRate})
+		INSERT INTO GenderAgeData(stdDay, gubun, confCase, confCaseRate, death, deathRate, criticalRate)
+		VALUES(#{stdDay},#{gubun},#{confCase},#{confCaseRate},#{death},#{deathRate},#{criticalRate})
 	</insert>
 	
 	<!-- 데이터 삭제 -->

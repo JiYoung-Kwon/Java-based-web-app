@@ -1,13 +1,22 @@
 package corona;
 
 public class GenderAgeVo {
+	String stdDay; // 기준 날짜
 	String gubun; // 구분(성별, 연령별)
 
 	int confCase; // 확진자 수
-	int confCaseRate; // 확진률
+	float confCaseRate; // 확진률
 	int death; // 사망자 수
-	int deathRate; // 사망률
-	int criticalRate; // 치명률
+	float deathRate; // 사망률
+	float criticalRate; // 치명률
+	
+	
+	public String getStdDay() {
+		return stdDay;
+	}
+	public void setStdDay(String stdDay) {
+		this.stdDay = stdDay;
+	}
 	public String getGubun() {
 		return gubun;
 	}
@@ -20,10 +29,10 @@ public class GenderAgeVo {
 	public void setConfCase(int confCase) {
 		this.confCase = confCase;
 	}
-	public int getConfCaseRate() {
+	public float getConfCaseRate() {
 		return confCaseRate;
 	}
-	public void setConfCaseRate(int confCaseRate) {
+	public void setConfCaseRate(float confCaseRate) {
 		this.confCaseRate = confCaseRate;
 	}
 	public int getDeath() {
@@ -32,16 +41,16 @@ public class GenderAgeVo {
 	public void setDeath(int death) {
 		this.death = death;
 	}
-	public int getDeathRate() {
+	public float getDeathRate() {
 		return deathRate;
 	}
-	public void setDeathRate(int deathRate) {
+	public void setDeathRate(float deathRate) {
 		this.deathRate = deathRate;
 	}
-	public int getCriticalRate() {
+	public float getCriticalRate() {
 		return criticalRate;
 	}
-	public void setCriticalRate(int criticalRate) {
+	public void setCriticalRate(float criticalRate) {
 		this.criticalRate = criticalRate;
 	}
 
