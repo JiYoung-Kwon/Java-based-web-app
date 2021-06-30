@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+
 @Controller
 public class DataController {
 	
@@ -31,9 +33,14 @@ public class DataController {
 		List<GenderAgeVo> gaList = gaDao.select();
 		CityVo cVo = cDao.selectCK();
 		
+		Gson gson = new Gson();
+		String jsonPlace = gson.toJson(kList);
+		//System.out.println(jsonPlace);
+		
 		mv.addObject("kList", kList);
 		mv.addObject("gaList", gaList);
 		mv.addObject("cVo", cVo);
+		mv.addObject("kJson",jsonPlace);
 		
 		mv.setViewName("CasesInKorea");
 		return mv;

@@ -58,4 +58,15 @@ public class KoreaDao {
 		}
 		return voList;
 	}
+
+	// 데이터 조회
+	public List<String> selectConfirmed() {
+		List<String> confirmedList = null;
+		try {
+			confirmedList = sqlSession.selectList("corona.searchTodayCF");
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return confirmedList;
+	}
 }

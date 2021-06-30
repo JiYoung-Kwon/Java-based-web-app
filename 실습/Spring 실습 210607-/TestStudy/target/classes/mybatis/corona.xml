@@ -11,6 +11,11 @@
 		select * from KoreaData
 	</select>
 	
+	<!-- 1-1. 국내 데이터 중 일일 확진자만 -->
+	<select id = 'searchTodayCF' resultType = "String">
+		select todayDecide from KoreaData
+	</select>
+	
 	<!-- 2. 국외 데이터 -->
 	<select id = 'searchG' resultType = "corona.GlobalVo">
 		select * from GlobalData
