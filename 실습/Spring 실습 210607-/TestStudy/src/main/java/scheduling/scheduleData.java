@@ -26,7 +26,7 @@ public class scheduleData {
 	CityData cData;
 	
 
-	@Scheduled(cron = "55 01 15 * * *")
+	@Scheduled(cron = "08 09 14 * * *")
 	public void fixedDelayTest() {
 		try {
 			kData.parsingKorea();

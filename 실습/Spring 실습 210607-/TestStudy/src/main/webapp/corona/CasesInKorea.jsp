@@ -160,9 +160,37 @@
 
 /* css- 그래프 크기 */
 #chart1, #chart2 {
-	width: 1250px;
+	width: 1000px;
 	min-height: 300px;
+	margin-left: 125px;
+	margin-top: 20px;
+	margin-right: 125px;
+	margin-bottom: 20px;
+}
+
+.yAxes_L {
+	display: inline-block;
+	width: 495px;
+	text-align: left;
+}
+
+.yAxes_R {
+	display: inline-block;
+	width: 495px;
+	text-align: right;
+}
+
+.chart {
+	width: 1250px;
 	border: 1px solid;
+}
+
+em{
+	display:block;
+}
+
+.yAxes_label{
+	margin-bottom:10px;
 }
 
 /* css- 확진자 성별 현황 , 연령별 현황*/
@@ -177,17 +205,7 @@
 	width: 312.5px;
 }
 
-#patientGraph #chart1 .yAxes_label .yAxes_L{
-	display : inline-block;
-	width : 620px;
-    text-align: left;
-}
 
-#patientGraph #chart1 .yAxes_label .yAxes_R{
-	display : inline-block;
-	width : 620px;
-    text-align: right;
-}
 </style>
 
 </head>
@@ -346,20 +364,20 @@
 		<div id='patientGraph'>
 
 			<h3>- 일일 및 누적 확진환자 추세</h3>
-			<div id='chart1'>
-				<canvas id="bar-infection" width="750" height="300"></canvas>
-				<div class = 'yAxes_label'>
-					<div class = 'yAxes_L'>
-						<span class = 'decide'>(누적 확진환자)</span>
-						<em>(명)</em>
+			<div class='chart'>
+				<div id='chart1'>
+					<div class='yAxes_label'>
+						<div class='yAxes_L'>
+							<span class='decide'>(누적 확진환자)</span> <em>(명)</em>
+						</div>
+
+						<div class='yAxes_R'>
+							<span class='todayDecide'>(일일 확진환자)</span> <em>(명)</em>
+						</div>
 					</div>
-					
-					<div class = 'yAxes_R'>
-						<span class = 'todayDecide'>(일일 확진환자)</span>
-						<em>(명)</em>
-					</div>
+					<canvas id="bar-infection" width="1000" height="300"></canvas>
+
 				</div>
-				
 			</div>
 		</div>
 
@@ -368,7 +386,21 @@
 		<div id='cumulativeGraph'>
 
 			<h3>- 확진환자 내 일일 및 누적 격리해제 추세</h3>
-			<div id='chart2'></div>
+			<div class='chart'>
+				<div id='chart2'>
+					<div class='yAxes_label'>
+						<div class='yAxes_L'>
+							<span class='clear'>(누적 격리해제)</span> <em>(명)</em>
+						</div>
+
+						<div class='yAxes_R'>
+							<span class='todayClear'>(일일 격리해제)</span> <em>(명)</em>
+						</div>
+					</div>
+					<canvas id="bar-release" width="1000" height="300"></canvas>
+
+				</div>
+			</div>
 		</div>
 
 
@@ -435,7 +467,10 @@
 		<br /> <br />
 	</div>
 	<script src="../coronaJs/chartKorea.js"></script>
-	<script>drawChart("bar-infection", ${kJson});</script>
+	<script>
+		drawChart1(${kJson});
+		drawChart2(${kJson});
+	</script>
 </body>
 
 </html>

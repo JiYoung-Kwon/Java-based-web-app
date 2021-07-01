@@ -1,6 +1,7 @@
 package corona;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
@@ -57,4 +58,15 @@ public class GlobalDao {
 		}
 		return voList;
 	}
+	
+	// 데이터 조회(합계)
+		public Map<String, String> selectTotal() {
+			Map<String, String> total = null;
+			try {
+				total = sqlSession.selectOne("corona.searchGTot");
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+			return total;
+		}
 }

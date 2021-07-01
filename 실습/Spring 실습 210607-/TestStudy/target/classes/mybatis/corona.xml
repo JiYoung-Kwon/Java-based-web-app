@@ -21,6 +21,11 @@
 		select * from GlobalData
 	</select>
 	
+	<!-- 2-1. 국외 데이터 합계 -->
+	<select id = 'searchGTot' resultType = "map">
+		select sum(CASE WHEN NATIONNM != '한국' THEN NATDEFCNT END)totalDef, sum(CASE WHEN NATIONNM != '한국' THEN NATDEATHCNT END)totalDeath from GlobalData
+	</select>
+	
 	<!-- 3. 시도별 데이터 -->
 	<select id = 'searchC' resultType = "corona.CityVo">
 		select * from CityData

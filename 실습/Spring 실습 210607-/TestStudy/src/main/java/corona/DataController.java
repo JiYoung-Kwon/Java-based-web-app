@@ -1,6 +1,8 @@
 package corona;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,6 +45,21 @@ public class DataController {
 		mv.addObject("kJson",jsonPlace);
 		
 		mv.setViewName("CasesInKorea");
+		return mv;
+	}
+	
+	@RequestMapping(value = "/corona/searchG.corona", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView searchGlobal() {
+		ModelAndView mv = new ModelAndView();
+		
+
+		List<GlobalVo> gList = gDao.select();
+		Map<String, String> total = gDao.selectTotal();
+		System.out.println(total);
+		mv.addObject("gList", gList);
+		mv.addObject("total", total);
+		
+		mv.setViewName("CasesInGlobal");
 		return mv;
 	}
 	
