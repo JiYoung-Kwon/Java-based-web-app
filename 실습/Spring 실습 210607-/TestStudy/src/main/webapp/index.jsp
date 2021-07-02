@@ -13,6 +13,7 @@
 	<h2>화면 조회</h2>
 	<a href = "corona/searchK.corona">국내 현황 조회</a>
 	<a href = "corona/searchG.corona">국외 현황 조회</a>
+	<a href = "corona/searchC.corona">시도별 현황 조회</a>
 </div>
 </body>
 </html>

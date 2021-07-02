@@ -27,6 +27,7 @@ public class DataController {
 	@Autowired
 	CityDao cDao;
 	
+	//국내 현황 조회
 	@RequestMapping(value = "/corona/searchK.corona", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView searchKorea() {
 		ModelAndView mv = new ModelAndView();
@@ -48,6 +49,7 @@ public class DataController {
 		return mv;
 	}
 	
+	//국외 현황 조회
 	@RequestMapping(value = "/corona/searchG.corona", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView searchGlobal() {
 		ModelAndView mv = new ModelAndView();
@@ -63,5 +65,17 @@ public class DataController {
 		return mv;
 	}
 	
+	//시도별 현황 조회(메인)
+	@RequestMapping(value = "/corona/searchC.corona", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView searchCity() {
+		ModelAndView mv = new ModelAndView();
+		
+
+		List<CityVo> cList = cDao.select();
+		mv.addObject("cList", cList);
+		
+		mv.setViewName("CasesInMain");
+		return mv;
+	}
 	
 }

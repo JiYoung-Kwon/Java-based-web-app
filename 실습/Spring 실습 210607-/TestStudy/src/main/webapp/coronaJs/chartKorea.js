@@ -1,7 +1,35 @@
 /**
  * 
  */
-drawChart1 = function(kJson) {
+var plugin = {
+	afterDatasetsDraw: function(chart) {
+		var ctx = chart.ctx;
+		chart.data.datasets.forEach(function(dataset, i) {
+			var meta = chart.getDatasetMeta(i);
+			if (!meta.hidden && i == 0) {
+				meta.data.forEach(function(element, index) {
+					// Draw the text in black, with the specified font
+					ctx.fillStyle = 'rgb(255, 0, 0)';
+					var fontSize = 15;
+					var fontStyle = 'normal';
+					var fontFamily = 'Helvetica Neue';
+					ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
+					// Just naively convert to string for now
+					var dataString = dataset.data[index].toString();
+					// Make sure alignment settings are correct
+					ctx.textAlign = 'center';
+					ctx.textBaseline = 'middle';
+					var padding = 5;
+					var position = element.tooltipPosition();
+					ctx.fillText(dataString, position.x, position.y - (fontSize / 2) - padding);
+				});
+			}
+		});
+	}
+};
+
+
+drawChart1 = function(kJson) { 
 	var arrDate = [];
 	var arrTodayDecide = [];
 	var arrDecide = [];
@@ -13,8 +41,6 @@ drawChart1 = function(kJson) {
 		arrDate[j] = day.substring(0, 4) + "." + day.substring(4, 6) + "." + day.substring(6, 8);
 	}
 	console.log(arrDecide);
-
-
 
 	new Chart(document.getElementById("bar-infection"), {
 		type: 'bar',
@@ -53,7 +79,7 @@ drawChart1 = function(kJson) {
 					position: 'left',
 					ticks: {
 						min: 0,
-						max: 160000,
+						max: 180000,
 						fontSize: 14,
 						userCallback: function(value, index, values) {
 							value = value.toString();
@@ -84,7 +110,8 @@ drawChart1 = function(kJson) {
 					}
 				}]
 			}
-		}
+		},
+		plugins: plugin
 	});
 }
 
@@ -171,6 +198,7 @@ drawChart2 = function(kJson) {
 					}
 				}]
 			}
-		}
+		},
+		plugins: plugin
 	});
 }

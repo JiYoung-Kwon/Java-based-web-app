@@ -26,14 +26,24 @@ public class scheduleData {
 	CityData cData;
 	
 
-	@Scheduled(cron = "08 09 14 * * *")
-	public void fixedDelayTest() {
+	@Scheduled(cron = "00 00 11 * * *")
+	public void fixedKGAC() {
 		try {
+			//나머지는 11시 갱신
 			kData.parsingKorea();
-			//global은 3시 갱신, 나머지는 11시 갱신
-			gData.parsingGlobal();
 			gaData.parsingGenderAge();
 			cData.parsingCity();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Scheduled(cron = "00 00 15 * * *")
+	public void fixedG() {
+		try {
+			//global은 3시 갱신
+			gData.parsingGlobal();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -15,8 +15,9 @@
 
 <title>국내 발생 현황</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+
+
 
 <style>
 #table1 *, #table2 *, #table3 *, #table4 *, #table5 *, #table6 *,
@@ -30,7 +31,7 @@
 	display: table;
 	width: 1250px;
 	border-collapse: collapse;
-	border-spacing: 0;
+	border-spacing: 0; 
 	margin: 0px;
 	padding: 0px;
 }
@@ -469,7 +470,7 @@ em{
 	<script src="../coronaJs/chartKorea.js"></script>
 	<script>
 		drawChart1(${kJson});
-		drawChart2(${kJson});
+		drawChart2(${kJson}); 
 	</script>
 </body>
 
