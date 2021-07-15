@@ -1,0 +1,3 @@
+[문제3]
+제약 조건에서 check 속성을 disable 시킨다.
+(ALTER TABLE student disable novalidate constraint student_grade_ck;)

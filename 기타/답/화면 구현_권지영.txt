@@ -1,0 +1,22 @@
+[문제 1]
+이유 : span태그는 인라인 요소로서, 넓이와 높이 값을 설정할 권한이 없는 태그이다.
+조치 방법 : span 요소가 가지고 있는 디스플레이 속성(display)인 인라인 레벨 요소를 블록 레벨 요소로 속성 변환을 해준다.
+ 예시)  	<style>
+		span{
+			display: inline-block;
+			width: 200px;
+		}
+	</style>
+
+[문제 2]
+<form>
+	<label>아이디 : <input type = 'text' minlength="4" maxlength="12" required></label>
+	<br/>
+	<label>암호 : <input type = 'text' minlength="4" maxlength="12" required></label>
+	<br/>
+	<label>성명 : <input type = 'text' minlength="2" maxlength="10" required></label>
+	<br/>
+	<label>이메일 : <input type = 'email'></label>
+	<br/>
+	<input type = 'submit'>
+</form>

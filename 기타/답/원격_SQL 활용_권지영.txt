@@ -1,0 +1,21 @@
+[문제 1]
+
+CREATE TABLE score(
+	serial number,
+	subject varchar(30),
+	mid varchar(20),
+	score number(4)
+);
+
+[문제 2]
+
+CREATE TABLE tempScore
+AS
+SELECT * FROM SCORE;
+
+[문제 3]
+
+INSERT ALL
+INTO SCORE VALUES(SERIAL,SUBJECT ,MID,SCORE)
+INTO TEMPSCORE VALUES(SERIAL,SUBJECT ,MID,SCORE)
+SELECT 1 SERIAL , '국어' SUBJECT , 'hong' MID, 100 SCORE FROM dual;

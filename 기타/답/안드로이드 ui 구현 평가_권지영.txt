@@ -1,0 +1,93 @@
+[문제1]
+컨포넌트 배치를 위아래로 하려 하였으나 정상적으로 되지 않았다. 아래의 코드를 보고 문제점을 기술하고 수정된 코드를 작성하시오.
+
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:orientation="horizontal"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="kr.jobtc.samplemynote.InputActivity">
+
+    <TextView android:text="메모 입력" 
+	android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:padding="10dp"
+        android:background="#aaaaaaff"
+        android:gravity="center" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="저장"
+        android:id="@+id/btnInput"
+        android:layout_gravity="right" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="제목"
+        android:id="@+id/textView5" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText2"
+        android:singleLine="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="내용"
+        android:id="@+id/textView6" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/editText3"
+        android:textSize="18dp" />
+
+</LinearLayout>
+
+* 문제점	: orientation이 horizontal로 되어있어서, width="match_parent"인 첫번째 TextView 컴포넌트 뒤에 나열된 컴포넌트들이 겹쳐 가려진다.
+* 답 	: android:orientation="horizontal"를 android:orientation="vertical"로 수정
+
+
+[문제2]
+해상도에 상관없이 문자의 크기를 일정하게 유지하려 한다. 아래의 코드부분을 수정하시고 이유를 설명하시오.
+
+<TextView android:text="메모 입력" android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20px"
+        android:padding="10dp"
+        android:background="#aaaaaaff"
+        android:gravity="center" />
+		
+* 답	: android:textSize = "20dp" 로 수정
+* 이유	: dp는 디스플레이의 해상도에 상관없이 동일한 크기를 갖는다. px는 화면 밀도가 큰 스크린에서는 작게 보여지게 된다.
+
+
+[문제3]
+
+컨포넌트 넓이를 부모 넓이에 맞게 작성하기 위한 코드를 작성하시오.	
+
+* 답 :	android:layout_width="match_parent"
+        android:layout_height="match_parent"
+		
+[문제4]
+안드로이드 앱의 실행 환경에 대한 전반적인 정보를 갖고 있는 파일은 어떤 것인가 ?	
+
+* 답 : AndroidManifest.xml
+		
+[문제5]
+아래는 안드로이드를 사용한 데이터 조회 프로그램의 일부분이다. [가]에 적절한 내용은 ?
+
+ String sql = "select _id, mdate, subject from note ";
+ [ 가          ]  c = sqLiteDatabase.rawQuery(sql, null);
+
+* 답 : Cursor

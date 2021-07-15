@@ -1,0 +1,77 @@
+- 서버 프로그램 구현
+- 권지영
+-------------------------------------------------
+
+[문제1]
+pom.xml에 다음을 추가한다.(DB는 MySQL을 사용할 경우)
+
+<!– Spring jdbc -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-jdbc</artifactId>
+		<version>4.2.0.RELEASE</version>
+	</dependency>
+<!-- Apache Commons -->
+	<dependency>
+		<groupId>commons-dbcp</groupId>
+		<artifactId>commons-dbcp</artifactId>
+		<version>1.4</version>
+	</dependency>
+<!-- MySQL Connector -->
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>5.1.34</version>
+	</dependency>
+<!-- MyBatis -->
+	<dependency>
+		<groupId>org.mybatis</groupId>
+		<artifactId>mybatis</artifactId>
+		<version>3.2.8</version>
+	</dependency>
+
+	<dependency>
+		<groupId>org.mybatis</groupId>
+		<artifactId>mybatis-spring</artifactId>
+		<version>1.2.2</version>
+	</dependency>
+
+
+[문제2]
+파일명 : MemberInterface.java
+--------------------------------------------------
+package member;
+
+import java.util.List;
+
+public interface MemberInterface {
+	void create(MemberVo vo) throws Exception;
+	
+	MemberVo read(String mid) throws Exception;
+	
+	void update(MemberVo vo) throws Exception;
+	
+	void delete(String mid) throws Exception;
+	
+	List<MemberVo> listAll() throws Exception;
+}
+
+
+[문제3]
+@RequestMapping(value="/insert", method= RequestMethod.POST)
+public void InsertMethod (MemberVO vo) throws Exception{
+	...
+}
+
+
+[문제4]
+public class MonthAll{ 
+	@Scheduled(cron = "* * * 1 * *")
+   public void process() { … }
+}
+
+[문제5]
+method = {RequestMethod.POST,RequestMethod.GET}
+
+[문제6]
+HttpServletRequest req

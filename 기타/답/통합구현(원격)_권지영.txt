@@ -1,0 +1,32 @@
+- 통합구현(원격)
+- 권지영
+
+1. mybatis의 환경 설정 파일에서 mapper 파일을 아래와 같이 구현하였다. 각각의 차이점에 대해 설명하시오.
+
+가) <mapper resource=”member.xml”/>
+나) <mapper resource=”member/member.xml”/>
+
+[답]
+가 : resource 바로 아래에 있는 member.xml 파일
+나 : resource 아래의 member 패키지 안에 있는 member.xml 파일
+
+2. 아래와 같은 코드를 실행하여 결과를 처리하고자 하였으나 오류가 발생하였다. 오류를 수정하시오.
+public List<String> select(){
+    List<String> list = sqlSession.selectOne(“my.select”);
+    return list;
+}
+
+[답]
+selectOne -> selectList 로 수정
+
+
+3.  jQuery와 ajax를 사용하여 register.jsp 파일의 내용을 #border 내에 표시하려 하였다. 오류를 수정하시오.
+$('#board #btnInsert').on('click', function(){
+	var param = $(frm).serialize();
+	$('#border').load('./board/register.jsp', param);
+})
+
+[답]
+함수 내 첫 번째 줄에 var frm = $('#frm_board')[0]; 코드 추가를 해 폼에 접근해야한다.
+
+

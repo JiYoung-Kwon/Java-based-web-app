@@ -1,0 +1,13 @@
+[문제1]
+원인	: score테이블의 id 컬럼이 foreign key로 설정이 되어있는데, 참조하려고 하는 부모 테이블의 컬럼 값이 존재하지 않아서 오류가 발생하였다.
+해결방안	: 부모 테이블에 해당 키값을 가진 데이터를 먼저 추가하고 insert를 다시 시도하거나, 삽입하는 아이디 값을 부모 테이블 컬럼에 존재하는 값으로 수정하여 insert한다.
+
+[문제2]
+1) score 테이블의 id 컬럼에 제약조건을 설정한다.(member테이블의 id를 참조하는 foreign key로 설정한다.)
+	ex) CONSTRAINT score_id_fk FOREIGN KEY(id) REFERENCES MEMBER(id)
+2) member 테이블의 id 컬럼에 hong값을 먼저 추가한다.
+3) 이 후에, score 테이블에 성적 정보를 입력한다.
+
+[문제3]
+제약 조건에서 check 속성을 disable시킨다.
+(ALTER TABLE student disable novalidate constraint student_grade_ck;)

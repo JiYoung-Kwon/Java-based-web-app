@@ -1,0 +1,8 @@
+[문제1]
+원인	: 새로운 Activity를 추가하여 사용할 수 있게 하려면, 추가한 Activity 정보를 AndroidManifest.xml 파일에 선언해야 한다.
+	  하지만 위 코드에는 SubActivity에 대한 정보를 선언하지 않았기 때문에, SubActivity라는 Activity를 찾을 수 없어 오류가 발생하였다.
+조치 방법 	: <activity android:name=".SubActivity"/> 코드를 추가해야 한다. 
+
+[문제2]
+원인	: onCreate() 메서드는 Activity가 처음 만들어졌을 때 호출된다. 따라서 활성화 될 때마다 실행되는 코드는 실행되지 않는다.
+조치 방법 	: 액티비티가 다시 실행될 때 호출되는 onResume() 메서드를 구현하여 그 곳에 활성화 될 때마다 실행되는 코드를 작성한다. 

@@ -1,0 +1,27 @@
+- 통합구현
+- 권지영
+-----------------------------------------
+[문제 1]
+1. 체계적인 코드 관리로 유지보수가 용이하다.
+2. 기본설계 및 기능 라이브러리를 제공하여 개발 생산성이 높다.
+3. 코드에 대한 재사용성이 높다.
+
+[문제 2]
+<resultMap type = "kr.jobtc.Member" id = "mem_map">
+	<result property = "mid" column="m_id"/>		
+	<result property = "phoneNumber" column="phone_number"/>		
+</resultMap>
+
+[문제 3]
+가) oracle.jdbc.driver.OracleDriver
+나) jdbc:oracle:thin:@127.0.0.1:1521:orcl
+다) hr
+라) hr
+
+[문제 4]
+가) 45
+나) 1
+
+[문제 5]
+1. XML 구조 : 배열을 사용할 수 없고, 계층적 데이터 구조를 가진다.
+2. JSON 구조 : 배열을 사용할 수 있어 효율적인 데이터 구성이 가능하다.

@@ -1,0 +1,83 @@
+--------------------------
+인터페이스 구현
+--------------------------
+
+[문제1]
+
+public interface MemberInterface {
+	public int insert(MemberVo vo); //C
+	public List<MemberVo> select(MemberVo vo); //R
+}
+
+
+[문제2]
+
+public class Member implements MemberInterface {
+
+	@Override
+	public int insert(MemberVo vo) {
+		System.out.println("정회원 정보 입력");
+		return 0;
+	}
+
+	@Override
+	public List<MemberVo> select(MemberVo vo) {
+		System.out.println("정회원 정보 조회");
+		return null;
+	}
+	
+}
+
+public class Guest implements MemberInterface{
+
+	@Override
+	public int insert(MemberVo vo) {
+		System.out.println("비회원 정보 입력");
+		return 0;
+	}
+
+	@Override
+	public List<MemberVo> select(MemberVo vo) {
+		System.out.println("비회원 정보 조회");
+		return null;
+	}
+
+}
+
+
+[문제3]
+
+public class Member implements MemberInterface {
+
+	@Override
+	public int insert(MemberVo vo) {
+		System.out.println("정회원 정보 입력");
+		return 0;
+	}
+
+	@Override
+	public List<MemberVo> select(MemberVo vo) {
+		System.out.println("정회원 정보 조회");
+		return null;
+	}
+	
+	public int update(MemberVo vo) {
+		System.out.println("정회원 정보 수정");
+		return 0;
+	}
+	
+	public int delete(MemberVo vo) {
+		System.out.println("정회원 정보 삭제");
+		return 0;
+	}
+	
+}
+
+[문제4]
+
+자바는 다중 상속을 지원하지 않는다. 따라서 클래스 상속은 단 하나의 클래스만 상속할 수 있다.
+
+[문제5]
+
+인터페이스를 상속(Implements) 받을 경우, 인터페이스 내부의 모든 추상메소드를 구현해야 한다.
+B 인터페이스의 추상메소드를 A 클래스에서 구현하지 않았기 때문에 오류가 발생하였다.

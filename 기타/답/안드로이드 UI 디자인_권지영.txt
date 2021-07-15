@@ -1,0 +1,55 @@
+----------------------------
+안드로이드 - UI 테스트
+이름 : 권지영
+----------------------------
+
+[문제1]
+안드로이드 메뉴를 액션바에 항상 보여주려 한다. 아래의 코드를 수정하시오.
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="kr.jobtc.samplemynote.ModifyActivity">
+    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+        android:orderInCategory="100" app:showAsAction="never" />
+</menu>
+
+
+* 답 : app:showAsAction="never" => app:showAsAction="always"로 수정
+
+[문제2]
+Aactivity에서 Bactivity로 테스트 문자열을 전달하도록 Indent를 작성하시오.
+
+[                            ]
+myIntent.putExtra("value", "테스트");
+
+* 답 : Intent myIntent = new Intent(Aactivity.this, Bactivity.class);
+
+[문제3]
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+       [  가       ].inflate(R.menu.menu_modify, menu);
+        return true;
+    }
+위 코드는 옵션 메뉴를 처리하는 코드중 일부분이다. [가]에 적절한 내용은 ?
+
+* 답 : getMenuInflater()
+
+[문제4]
+ protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        lv = (ListView)findViewById(R.id.listView);
+        [    가                   ]
+...}
+
+위 코드를 사용하여 Context메뉴에 lv를 등록하고자 한다. [가]에 적당한 내용은 ?
+
+* 답 : registerForContextMenu(lv);
+
+
+
+
+
+
+

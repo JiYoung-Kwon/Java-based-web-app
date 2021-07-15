@@ -1,0 +1,31 @@
+[문제 1]
+<form>
+	<label>아이디 : <input type = 'text' minlength="4" maxlength="12" required></label>
+	<br/>
+	<label>암호 : <input type = 'text' minlength="4" maxlength="12" required></label>
+	<br/>
+	<label>성명 : <input type = 'text' minlength="2" maxlength="10" required></label>
+	<br/>
+	<label>이메일 : <input type = 'email'></label>
+	<br/>
+	<input type = 'submit'>
+</form>
+
+[문제 2]
+.target label{
+	display:inline-block;
+	width:70px;
+}
+
+[문제 3]
+원인	: float는 요소를 떠있는 상태로 만드는 것으로, 앞의 요소 span들이 떠있기 때문에 
+	  그 다음에 있는 요소가 그 자리가 비었다고 생각하고 그 자리로 올라오게 된다.
+	  따라서 AAAB와 같은 모양으로 보이게 되는 것이다.
+조치 방법	: B의 값은 정렬되지 않게 하기 위해, <div class = 'other'>에 clear:both;를 지정해 float의 영향을 받지 않도록 한다.
+		.other{
+			clear:both;
+	  	}
+	  그러면,
+	  AAA
+	  B
+	  의 형태로 표시된다.

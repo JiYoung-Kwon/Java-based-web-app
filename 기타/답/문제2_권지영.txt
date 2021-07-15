@@ -1,0 +1,2 @@
+[문제2]
+score 테이블의 id 컬럼에 제약조건을 설정한다.(member테이블의 member_id를 참조하는 foriegn key로 설정한다.)
